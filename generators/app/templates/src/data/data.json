@@ -1,0 +1,15 @@
+{
+    "bears": [{
+            "name": "Smokey",
+            "tagline": "Only you can prevent forest fires.",
+            "visible": true,
+            "habitats": [{
+                "name": "National Parks"
+            }]
+        },{
+            "name": "Yogi",
+            "tagline": "I don't know, booboo.",
+            "visible": false
+        }
+    ]
+}

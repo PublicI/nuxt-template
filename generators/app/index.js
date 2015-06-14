@@ -1,27 +1,39 @@
-'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+var chalk = require('chalk'),
+    yeoman = require('yeoman-generator'),
+    yosay = require('yosay'),
+    s = require('underscore.string');
 
 module.exports = yeoman.generators.Base.extend({
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+
+    this.s = s;
+  },
   prompting: function () {
+
     var done = this.async();
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the ' + chalk.red('Public Integrity App') + ' generator!'
+      'Welcome to the ' + chalk.white.bgRed('Public Integrity App') + ' generator!'
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'appname',
+      message: 'What\'s the name of this project?',
+      default: 'newproject'
+      /*
+      filter: function(response) {
+        return this.s.slugify(response);
+      }.bind(this)*/
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      // To access props later use this.props.someOption;
+
+      this.props.year = (new Date()).getFullYear();
+      this.props.month = ('0' + ((new Date()).getMonth()+1)).slice(-2);
 
       done();
     }.bind(this));
@@ -29,7 +41,7 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
@@ -37,6 +49,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    this.npmInstall();
   }
 });
