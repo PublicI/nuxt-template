@@ -4,7 +4,7 @@
   "description": "A generator for single-page apps and embeddable graphics from the Center for Public Integrity's news dev team.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "chriszs/generator-publici-app",
+  "repository": "bitbucket:publicintegrity/app-generator",
   "author": {
     "name": "Chris Zubak-Skees",
     "email": "github@zubak-skees.com",
