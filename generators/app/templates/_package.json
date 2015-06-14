@@ -1,5 +1,5 @@
 {
-  "name": "<%= this.s.slugify(props.appname) %>",
+  "name": "<%= s.slugify(props.appname) %>",
   "version": "0.1.0",
   "devDependencies": {
     "del": "^1.1.1",

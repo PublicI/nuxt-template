@@ -34,6 +34,8 @@ express.static.mime.define({
     'application/json': ['topojson']
 });*/
 
+browserify.settings.development('cache', false);
+
 app.use('/script/embed.js', browserify(__dirname + '/../script/embed.js'));
 app.use('/script/script.js', browserify(__dirname + '/../script/script.js'));
 app.use(less(path.join(__dirname, '../')));

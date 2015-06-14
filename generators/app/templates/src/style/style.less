@@ -11,18 +11,18 @@ html {
     height: auto;
 }
 
-#newProject {
+#<%= s.camelize(props.appname,true) %> {
 
 }
 
 @media (max-width: 800px) {
-    .newProject {
+    .<%= s.camelize(props.appname,true) %> {
 
     }
 }
 
 @media (max-width: 500px) {
-    .newProject {
+    .<%= s.camelize(props.appname,true) %> {
 
     }
 }

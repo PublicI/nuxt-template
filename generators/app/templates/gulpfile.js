@@ -108,9 +108,9 @@ gulp.task('bakeEmbed',function (cb) {
     script.render(function (content) {
         ractive.renderFile(__dirname + '/src/embed.html', {
                 version: pkg.version,
-                imgPath: 'img/',
-                scriptPath: '',
-                stylePath: '',
+                imgPath: pkg.version + '/img/',
+                scriptPath: pkg.version,
+                stylePath: pkg.version,
                 commonPath: '/apps/common/',
                 content: content,
                 stripComments: false,
@@ -155,7 +155,7 @@ gulp.task('push', function() {
 
     var embed = gulp.src(['dist/*'])
                 .pipe(rename(function(path) {
-                    path.dirname = '/apps/<%= this.props.year %>/<%= this.props.month %>/' + pkg.name + '/' + path.dirname;
+                    path.dirname = '/apps/<%= props.year %>/<%= props.month %>/' + pkg.name + '/' + path.dirname;
                 }))
                 .pipe(publisher.publish({
                     'Cache-Control': 's-maxage=' + (60*2) + ',max-age=0'
@@ -165,7 +165,7 @@ gulp.task('push', function() {
 
     var rest = gulp.src(['dist/' + pkg.version + '/**'])
                 .pipe(rename(function(path) {
-                    path.dirname = '/apps/<%= this.props.year %>/<%= this.props.month %>/' + pkg.name + '/' + pkg.version + '/' + path.dirname;
+                    path.dirname = '/apps/<%= props.year %>/<%= props.month %>/' + pkg.name + '/' + pkg.version + '/' + path.dirname;
                 }))
                 .pipe(awspublish.gzip())
                 .pipe(publisher.publish())

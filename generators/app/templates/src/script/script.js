@@ -39,7 +39,7 @@ var app = {
         app.data = JSON.parse(fs.readFileSync(__dirname + '/../data/data.json', 'utf8'));
 
         if (typeof document !== 'undefined') {
-            app.container = document.querySelector('#newProject');
+            app.container = document.querySelector('#<%= s.camelize(props.appname,true) %>');
         }
 
         app.ractive = new Ractive({
