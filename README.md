@@ -16,7 +16,7 @@ npm install -g bitbucket:publicintegrity/app-generator
 
 If this gives you trouble, try [this guide](https://confluence.atlassian.com/display/BITBUCKET/Troubleshoot+SSH+Issues)
 
-Finally, initiate the generator:
+Finally, create a project directory and run the generator in it:
 
 ```bash
 yo publici-app
