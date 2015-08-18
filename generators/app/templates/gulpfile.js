@@ -1,6 +1,5 @@
 var app = require('./src/util/server'),
     awspublish = require('gulp-awspublish'),
-    browserify = require('browserify'),
     buffer = require('vinyl-buffer'),
     changed = require('gulp-changed'),
     csslint = require('gulp-csslint'),
@@ -21,6 +20,8 @@ var app = require('./src/util/server'),
     sourcemaps = require('gulp-sourcemaps'),
     stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
+    webpack = require('webpack'),
+    webpackStream = require('webpack-stream'),
     yaml = require('js-yaml');
 
 gulp.task('clean', function(cb) {
@@ -71,36 +72,55 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('embedScripts', function() {
-
-    var bundler = browserify({
-        entries: ['./src/script/embed.js'],
-        debug: true
-    });
-
-    return bundler
-        .bundle()
-        .pipe(source('embed.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+    return gulp.src('./src/script/embed.js')
+        .pipe(webpackStream({
+            output: {
+                filename: 'embed.js',
+                publicPath: pkg.version + '/'
+            },
+            plugins: [
+                new webpack.DefinePlugin({
+                    'PKG_VERSION': '\'' + pkg.version + '\'',
+                    'PKG_NAME': '\'' + pkg.name + '\''
+                }),
+                new webpack.optimize.DedupePlugin(),
+                new webpack.optimize.OccurenceOrderPlugin(true),
+                new webpack.optimize.UglifyJsPlugin({
+                    compress: {
+                        warnings: false
+                    }
+                })
+            ]
+        }))
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('scripts', function() {
-
-    var bundler = browserify({
-        entries: ['./src/script/script.js'],
-        debug: true
-    });
-
-    return bundler
-        .bundle()
-        .pipe(source('script.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+    return gulp.src('./src/script/script.js')
+        .pipe(webpackStream({
+            output: {
+                filename: 'script.js',
+                publicPath: pkg.version + '/'
+            },
+            plugins: [
+                new webpack.optimize.DedupePlugin(),
+                new webpack.optimize.OccurenceOrderPlugin(true),
+                new webpack.optimize.UglifyJsPlugin({
+                    compress: {
+                        warnings: false
+                    }
+                })
+            ],
+            module: {
+                loaders: [{
+                    test: /\.json$/,
+                    loader: 'json'
+                },{
+                    test: /\.html$/,
+                    loader: 'ractive'
+                }]
+            }
+        }))
         .pipe(gulp.dest('dist/' + pkg.version));
 });
 

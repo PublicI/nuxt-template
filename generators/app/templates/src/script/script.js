@@ -4,10 +4,13 @@ var Ractive = require('ractive'),
 Ractive.DEBUG = false;
 
 if (typeof window !== 'undefined') {
-    var hover = require('./lib/ractive-events-hover');
-}
+    require('ractive-events-hover');
+    Ractive.events.tap = require( 'ractive-events-tap' );
 
-var fs = require('fs');
+    var pym = require('pym.js'),
+        WebFont = require('webfontloader');
+
+}
 
 var app = {
 
@@ -28,23 +31,25 @@ var app = {
     },
 
     render: function(cb) {
-        if (typeof pym !== 'undefined') {
+        app.data = require('../data/data.json');
+
+        if (typeof document !== 'undefined') {
             app.pym = pym.Child({
                 polling: 200
             });
-        }
 
-        app.template = fs.readFileSync(__dirname + '/../template.html', 'utf8');
+            var fonts = WebFont.load({
+                typekit: {
+                    id: 'wtj1rji'
+                }
+            });
 
-        app.data = JSON.parse(fs.readFileSync(__dirname + '/../data/data.json', 'utf8'));
-
-        if (typeof document !== 'undefined') {
             app.container = document.querySelector('#<%= s.camelize(props.appname,true) %>');
         }
 
         app.ractive = new Ractive({
             el: app.container,
-            template: app.template,
+            template: require('../template.html'),
             data: app.data,
             oncomplete: cb
         });

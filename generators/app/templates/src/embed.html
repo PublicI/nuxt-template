@@ -7,12 +7,7 @@
 
     <title><%= props.appname %></title>
 
-    <link rel="stylesheet" href="{{stylePath}}style.css" type="text/css">
-
-    <script type="text/javascript" src="//use.typekit.com/wtj1rji.js"></script>
-    <script type="text/javascript">
-    try{Typekit.load();}catch(e){}
-    </script>
+    <link rel="stylesheet" href="{{pkg.version}}/style.css" type="text/css">
 
 </head>
 <body>
@@ -25,11 +20,7 @@
     <script type="text/javascript" src="/apps/common/aight.min.js"></script>
     <![endif]-->
 
-    <script src="{{commonPath}}pym.v0.4.1.js" type="text/javascript"></script>
-    <script src="{{commonPath}}d3.v3.5.5.js" type="text/javascript"></script>
-    <script src="{{commonPath}}jquery.1.7.2.js" type="text/javascript"></script>
-    <script src="{{commonPath}}ractive.v0.6.1.js" type="text/javascript"></script>
-    <script src="{{scriptPath}}script.js" type="text/javascript"></script>
+    <script src="{{pkg.version}}/script.js" type="text/javascript"></script>
 
 </body>
 </html>
