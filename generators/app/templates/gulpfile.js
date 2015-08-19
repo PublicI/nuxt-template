@@ -15,7 +15,7 @@ var app = require('./src/util/server'),
     pkg = require('./package.json'),
     ractive = require('ractive-render'),
     rename = require('gulp-rename'),
-    script = require('./src/script/script'),
+    // script = require('./src/script/script'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
     stylish = require('jshint-stylish'),
@@ -125,14 +125,10 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('bakeEmbed',function (cb) {
-    script.render(function (content) {
+  //  script.render(function (content) {
         ractive.renderFile(__dirname + '/src/embed.html', {
-                version: pkg.version,
-                imgPath: pkg.version + '/img/',
-                scriptPath: pkg.version,
-                stylePath: pkg.version,
-                commonPath: '/apps/common/',
-                content: content,
+                pkg: pkg,
+         //       content: content,
                 stripComments: false,
                 preserveWhitespace: true
             }, function(err, html) {
@@ -152,7 +148,7 @@ gulp.task('bakeEmbed',function (cb) {
                     cb();
                 });
         });
-    });
+//    });
 });
 
 gulp.task('copy', function() {

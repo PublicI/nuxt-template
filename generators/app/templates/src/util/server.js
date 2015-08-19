@@ -8,7 +8,7 @@ var bodyParser = require('body-parser'),
     path = require('path'),
     pkg = require('../../package.json'),
     ractive = require('ractive-render'),
-    script = require('../script/script'),
+  //  script = require('../script/script'),
     webpack = require('webpack'),
     webpackMiddleware = require('webpack-dev-middleware');
 
@@ -42,12 +42,12 @@ app.use('/' + pkg.version, express.static(path.join(__dirname, '..', 'style')));
 app.use('/apps/common/', express.static(path.join(__dirname, '..', 'script', 'lib', 'common')));
 
 app.get('/embed.html', function(req, res) {
-    script.render(function (content) {
+  //  script.render(function (content) {
         res.render('embed', {
-            pkg: pkg,
-            content: content
+            pkg: pkg
+   //         content: content
         });
-    });
+ //   });
 });
 
 // embed.js webpack middleware
@@ -56,7 +56,7 @@ var embedCompiler = webpack({
     output: {
         path: __dirname + '/../script',
         filename: 'embed.js',
-        publicPath: '/script/'
+        publicPath: '/'
     },
     plugins: [new webpack.DefinePlugin({
         'PKG_VERSION': '\'' + pkg.version + '\''
@@ -74,7 +74,7 @@ var compiler = webpack({
     output: {
         path: __dirname + '/../script',
         filename: 'script.js',
-        publicPath: '/script/'
+        publicPath: '/' + pkg.version + '/'
     },
     devtool: 'source-map',
     module: {

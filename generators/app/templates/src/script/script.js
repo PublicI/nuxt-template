@@ -1,5 +1,4 @@
-var Ractive = require('ractive'),
-    d3 = require('d3');
+var Ractive = require('ractive');
 
 Ractive.DEBUG = false;
 
