@@ -64,7 +64,7 @@ var embedCompiler = webpack({
     devtool: 'source-map'
 });
 
-app.use('/script',webpackMiddleware(embedCompiler, {
+app.use('/',webpackMiddleware(embedCompiler, {
     noInfo: true
 }));
 
@@ -88,7 +88,7 @@ var compiler = webpack({
     }
 });
 
-app.use('/script',webpackMiddleware(compiler, {
+app.use('/' + pkg.version,webpackMiddleware(compiler, {
     noInfo: true
 }));
 
