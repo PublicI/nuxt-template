@@ -41,6 +41,12 @@ app.use('/' + pkg.version, express.static(path.join(__dirname, '..', 'style')));
 // serves up common scripts
 app.use('/apps/common/', express.static(path.join(__dirname, '..', 'script', 'lib', 'common')));
 
+app.get('/', function(req, res) {
+    res.render('index', {
+        pkg: pkg
+    });
+});
+
 app.get('/embed.html', function(req, res) {
   //  script.render(function (content) {
         res.render('embed', {
