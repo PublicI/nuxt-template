@@ -1,4 +1,4 @@
-var app = require('./src/util/server'),
+var // app = require('./src/util/server'),
     awspublish = require('gulp-awspublish'),
     buffer = require('vinyl-buffer'),
     changed = require('gulp-changed'),
@@ -27,7 +27,7 @@ var app = require('./src/util/server'),
 gulp.task('clean', function(cb) {
     return del(['dist/*'], cb);
 });
-
+/*
 gulp.task('screenshot',function (cb) {
     var server = app.listen(3210,function () {
         var pageres = new Pageres({
@@ -45,7 +45,7 @@ gulp.task('screenshot',function (cb) {
         });
         
     });
-});
+});*/
 
 gulp.task('style', function() {
     return gulp.src('src/style/*.less')

@@ -4,10 +4,8 @@ Ractive.DEBUG = false;
 
 if (typeof window !== 'undefined') {
     require('ractive-events-hover');
-    Ractive.events.tap = require( 'ractive-events-tap' );
 
-    var pym = require('pym.js'),
-        WebFont = require('webfontloader');
+    var pym = require('pym.js');
 
 }
 
@@ -36,12 +34,12 @@ var app = {
             app.pym = pym.Child({
                 polling: 200
             });
-
+/*
             var fonts = WebFont.load({
                 typekit: {
                     id: 'wtj1rji'
                 }
-            });
+            });*/
 
             app.container = document.querySelector('#<%= s.camelize(props.appname,true) %>');
         }

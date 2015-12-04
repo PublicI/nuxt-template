@@ -98,6 +98,8 @@ app.use('/' + pkg.version,webpackMiddleware(compiler, {
     noInfo: true
 }));
 
+
+app.use('/' + pkg.version, express.static(path.join(__dirname, '..')));
 app.use('/', express.static(path.join(__dirname, '..')));
 
 if (require.main === module) {
