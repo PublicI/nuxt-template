@@ -4,6 +4,11 @@ var chalk = require('chalk'),
     s = require('underscore.string');
 
 module.exports = Generator.extend({
+    constructor(args, opts) {
+        super(args, opts);
+
+        this.s = s;
+    },
     prompting() {
         // Have Yeoman greet the user.
         this.log(yosay(
