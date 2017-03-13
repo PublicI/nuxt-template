@@ -5,8 +5,6 @@ var chalk = require('chalk'),
 
 module.exports = Generator.extend({
     prompting() {
-        const done = this.async();
-
         // Have Yeoman greet the user.
         this.log(yosay(
             `Welcome to the ${chalk.white.bgRed('Public Integrity')} app generator!`
