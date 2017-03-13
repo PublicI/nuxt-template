@@ -47,6 +47,14 @@ module.exports = Generator.extend({
                 { interpolate: /<%=([\s\S]+?)%>/g }
             );
         },
+        webpack_config() {
+            this.fs.copy(
+                this.templatePath('webpack.config.js'),
+                this.destinationPath('webpack.config.js'),
+                this,
+                { interpolate: /<%=([\s\S]+?)%>/g }
+            );
+        },
         config() {
             this.fs.copy(
                 this.templatePath('config.yml.example'),
