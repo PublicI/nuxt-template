@@ -1,6 +1,6 @@
 {
   "name": "generator-publici-app",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A generator for single-page apps and embeddable graphics from the Center for Public Integrity's news dev team.",
   "license": "MIT",
   "main": "app/index.js",
@@ -14,10 +14,10 @@
     "generators"
   ],
   "dependencies": {
-    "chalk": "^1.0.0",
-    "underscore.string": "^3.1.1",
-    "yeoman-generator": "^0.19.0",
-    "yosay": "^1.0.2"
+    "chalk": "^1.1.3",
+    "underscore.string": "^3.3.4",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
   },
   "jshintConfig": {
     "esnext": true
