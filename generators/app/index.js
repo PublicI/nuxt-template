@@ -7,6 +7,8 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
+    this._.templateSettings.interpolate = /<%=([\s\S]+?)%>/g;
+
     this.s = s;
   },
   prompting: function () {
