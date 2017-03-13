@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './view/app';
 import VueRouter from 'vue-router';
-import auth from './view/auth';
 import example from './view/example';
 import model from './model';
 
