@@ -11,17 +11,13 @@ npm install -g yo
 Then, to install this generator, run:
 
 ```bash
-npm install -g bitbucket:publicintegrity/app-generator
+npm install -g github:publicintegrity/app-generator
 ```
 
-If this gives you trouble, try [this guide](https://confluence.atlassian.com/display/BITBUCKET/Troubleshoot+SSH+Issues)
+If this gives you trouble, try [this guide](https://help.github.com/articles/error-permission-denied-publickey/)
 
 Finally, create a project directory and run the generator in it:
 
 ```bash
 yo publici-app
 ```
-
-## License
-
-MIT
