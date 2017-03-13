@@ -11,7 +11,7 @@ npm install -g yo
 Then, to install this generator, run:
 
 ```bash
-npm install -g github:publicintegrity/app-generator
+npm install -g ssh+git@github.com:PublicI/app-generator.git
 ```
 
 If this gives you trouble, try [this guide](https://help.github.com/articles/error-permission-denied-publickey/)
