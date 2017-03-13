@@ -4,9 +4,7 @@ var chalk = require('chalk'),
     s = require('underscore.string');
 
 module.exports = Generator.extend({
-    constructor(args, opts) {
-        super(args, opts);
-
+    initializing() {
         this.s = s;
     },
     prompting() {
