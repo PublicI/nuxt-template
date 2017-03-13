@@ -1,5 +1,5 @@
 ## Getting Started
 
 ```bash
-npm start
+yarn start
 ```
