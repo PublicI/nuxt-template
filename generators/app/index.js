@@ -19,15 +19,13 @@ module.exports = Generator.extend({
             default: 'New project'
         }];
 
-        this.prompt(prompts, props => {
+        return this.prompt(prompts).then((props) => {
             this.props = props;
 
             this.props.year = (new Date()).getFullYear();
             this.props.month = (`0${(new Date()).getMonth()+1}`).slice(-2);
 
             this.width = '<%= width %>'; // hack
-
-            done();
         });
     },
 
