@@ -57,10 +57,10 @@ app.get('/embed.html', (req, res) => {
 
 const embedCompiler = webpack(webpackConfig.embed);
 
-import docs from './routes/docs';
+import example from './routes/example';
 
-app.use(docs);
-app.use(`/${pkg.version}`,docs);
+app.use(example);
+app.use(`/${pkg.version}`,example);
 
 app.use('/',webpackMiddleware(embedCompiler, {
     noInfo: true
