@@ -1,44 +1,38 @@
 var chalk = require('chalk'),
-    yeoman = require('yeoman-generator'),
+    Generator = require('yeoman-generator'),
     yosay = require('yosay'),
     s = require('underscore.string');
 
-module.exports = yeoman.generators.Base.extend({
-  constructor: function () {
-    yeoman.generators.Base.apply(this, arguments);
-
-    this.s = s;
-  },
-  prompting: function () {
-
-    var done = this.async();
+module.exports = Generator.extend({
+  prompting() {
+    const done = this.async();
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the ' + chalk.white.bgRed('Public Integrity') + ' app generator!'
+      `Welcome to the ${chalk.white.bgRed('Public Integrity')} app generator!`
     ));
 
-    var prompts = [{
+    const prompts = [{
       type: 'input',
       name: 'appname',
       message: 'What\'s the name of this project?',
       default: 'New project'
     }];
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, props => {
       this.props = props;
 
       this.props.year = (new Date()).getFullYear();
-      this.props.month = ('0' + ((new Date()).getMonth()+1)).slice(-2);
+      this.props.month = (`0${(new Date()).getMonth()+1}`).slice(-2);
 
       this.width = '<%= width %>'; // hack
 
       done();
-    }.bind(this));
+    });
   },
 
   writing: {
-    pkg: function () {
+    pkg() {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
@@ -46,7 +40,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    gitignore: function () {
+    gitignore() {
       this.fs.copy(
         this.templatePath('_.gitignore'),
         this.destinationPath('.gitignore'),
@@ -54,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    config: function () {
+    config() {
       this.fs.copy(
         this.templatePath('config.yml.example'),
         this.destinationPath('config.yml.example'),
@@ -62,7 +56,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    gulpfile: function () {
+    gulpfile() {
       this.fs.copyTpl(
         this.templatePath('gulpfile.js'),
         this.destinationPath('gulpfile.js'),
@@ -70,7 +64,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    readme: function () {
+    readme() {
       this.fs.copyTpl(
         this.templatePath('README.md'),
         this.destinationPath('README.md'),
@@ -78,7 +72,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    src: function () {
+    src() {
       this.fs.copyTpl(
         this.templatePath('src/*'),
         this.destinationPath('src'),
@@ -86,7 +80,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    data: function () {
+    data() {
       this.fs.copy(
         this.templatePath('src/data/*'),
         this.destinationPath('src/data'),
@@ -94,7 +88,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    script: function () {
+    script() {
       this.fs.copyTpl(
         this.templatePath('src/script/*'),
         this.destinationPath('src/script'),
@@ -102,7 +96,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    lib: function () {
+    lib() {
       this.fs.copy(
         this.templatePath('src/script/lib/**'),
         this.destinationPath('src/script/lib'),
@@ -110,7 +104,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    style: function () {
+    style() {
       this.fs.copyTpl(
         this.templatePath('src/style/*'),
         this.destinationPath('src/style'),
@@ -118,7 +112,7 @@ module.exports = yeoman.generators.Base.extend({
         { interpolate: /<%=([\s\S]+?)%>/g }
       );
     },
-    util: function () {
+    util() {
       this.fs.copy(
         this.templatePath('src/util/*'),
         this.destinationPath('src/util'),
@@ -128,7 +122,7 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  install: function () {
+  install() {
     this.yarnInstall();
   }
 });
