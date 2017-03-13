@@ -73,48 +73,8 @@ module.exports = Generator.extend({
         },
         src() {
             this.fs.copyTpl(
-                this.templatePath('src/*'),
+                this.templatePath('src/**'),
                 this.destinationPath('src'),
-                this,
-                { interpolate: /<%=([\s\S]+?)%>/g }
-            );
-        },
-        data() {
-            this.fs.copy(
-                this.templatePath('src/data/*'),
-                this.destinationPath('src/data'),
-                this,
-                { interpolate: /<%=([\s\S]+?)%>/g }
-            );
-        },
-        script() {
-            this.fs.copyTpl(
-                this.templatePath('src/script/*'),
-                this.destinationPath('src/script'),
-                this,
-                { interpolate: /<%=([\s\S]+?)%>/g }
-            );
-        },
-        lib() {
-            this.fs.copy(
-                this.templatePath('src/script/lib/**'),
-                this.destinationPath('src/script/lib'),
-                this,
-                { interpolate: /<%=([\s\S]+?)%>/g }
-            );
-        },
-        style() {
-            this.fs.copyTpl(
-                this.templatePath('src/style/*'),
-                this.destinationPath('src/style'),
-                this,
-                { interpolate: /<%=([\s\S]+?)%>/g }
-            );
-        },
-        util() {
-            this.fs.copy(
-                this.templatePath('src/util/*'),
-                this.destinationPath('src/util'),
                 this,
                 { interpolate: /<%=([\s\S]+?)%>/g }
             );
