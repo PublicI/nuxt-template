@@ -71,6 +71,14 @@ module.exports = Generator.extend({
                 { interpolate: /<%=([\s\S]+?)%>/g }
             );
         },
+        license() {
+            this.fs.copyTpl(
+                this.templatePath('LICENSE'),
+                this.destinationPath('LICENSE'),
+                this,
+                { interpolate: /<%=([\s\S]+?)%>/g }
+            );
+        },
         readme() {
             this.fs.copyTpl(
                 this.templatePath('README.md'),
