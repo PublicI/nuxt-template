@@ -38,19 +38,16 @@ app.use(`/${pkg.version}`, express.static(path.join(__dirname, 'style')));
 // serves up common scripts
 app.use('/apps/common/', express.static(path.join(__dirname, 'script', 'lib', 'common')));
 
-app.get('/', (req, res) => {
+app.get(['/','/index.html','/embed.html'], (req, res) => {
     res.render('index', {
         pkg
     });
 });
 
-app.get('/embed.html', (req, res) => {
-  //  script.render(function (content) {
-        res.render('embed', {
-            pkg
-   //         content: content
-        });
- //   });
+app.get(['/preview','/preview.html'], (req, res) => {
+    res.render('preview', {
+        pkg
+    });
 });
 
 import example from './routes/example';

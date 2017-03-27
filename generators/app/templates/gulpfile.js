@@ -51,8 +51,8 @@ gulp.task('scripts', function(cb) {
     webpack(webpackConfig,cb);
 });
 
-gulp.task('bakeEmbed', function(cb) {
-    hogan(__dirname + '/src/view/embed.html', {
+gulp.task('bakePreview', function(cb) {
+    hogan(__dirname + '/src/view/preview.html', {
         pkg: pkg,
         settings: {}
     }, function(err, html) {
@@ -61,7 +61,7 @@ gulp.task('bakeEmbed', function(cb) {
             return;
         }
 
-        fs.writeFile(__dirname + '/dist/embed.html', html, {
+        fs.writeFile(__dirname + '/dist/preview.html', html, {
             encoding: 'utf8'
         }, function(err) {
             if (!err) {
@@ -145,7 +145,7 @@ gulp.task('push', function(cb) {
         });
 });
 
-gulp.task('build', ['bakeEmbed',
+gulp.task('build', ['bakePreview',
                     'bakeIndex',
                     'copy',
                     'copy-oembed',
