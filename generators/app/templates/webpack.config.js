@@ -15,12 +15,6 @@ let common = {
             'PKG_VERSION': `'${pkg.version}'`,
             'PKG_NAME': `'${pkg.name}'`,
             'process.env.NODE_ENV': "'" + process.env.NODE_ENV + "'"
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            sourceMap: true
         })
     ],
     devtool: 'source-map',
@@ -70,6 +64,14 @@ common.entry[`${pkg.version}/script`] = ['es6-promise/auto', `./src/script/scrip
 
 if (process.env.NODE_ENV === 'production') {
     common.output.path = `${__dirname}/dist/`;
+
+    common.plugins.push(new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        },
+        sourceMap: true
+    }));
+
 }
 
 module.exports = common;
