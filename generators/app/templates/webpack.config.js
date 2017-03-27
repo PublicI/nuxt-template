@@ -1,44 +1,28 @@
-const _ = require('lodash'),
-      pkg = require('./package.json'),
+const pkg = require('./package.json'),
       webpack = require('webpack');
 
-// can we simplify this somehow?
-
-// shell for our four configs
-let configs = {
-    dev: {
-        app: null,
-        embed: null
-    },
-    prod: {
-        app: null,
-        embed: null
-    }
-};
-
-// initialize uglify plugin (added for prod, not dev)
-// does this still make sense even with source maps?
-let uglify = new webpack.optimize.UglifyJsPlugin({
-    compress: {
-        warnings: false
-    }
-});
-
-// what we pass to the DefinePlugin (broken out because it changes based on prod vs. dev)
-let definitions = {
-    'PKG_VERSION': `'${pkg.version}'`,
-    'PKG_NAME': '\'' + pkg.name + '\''
-};
-
-// base loader for app in the develepment environment
-configs.dev.app = {
-    entry: ['es6-promise/auto', `${__dirname}/src/script/script.js`], // 'whatwg-fetch',
+let common = {
     output: {
-        path: `${__dirname}/src/script`,
-        filename: 'script.js',
-        publicPath: `/${pkg.version}/`
+        path: `${__dirname}/src/`,
+        filename: '[name].js',
+        publicPath: '/'
     },
-    plugins: [new webpack.DefinePlugin(definitions)],
+    entry: {
+        embed: './src/script/embed.js'
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'PKG_VERSION': `'${pkg.version}'`,
+            'PKG_NAME': `'${pkg.name}'`,
+            'process.env.NODE_ENV': "'" + process.env.NODE_ENV + "'"
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: true
+        })
+    ],
     devtool: 'source-map',
     resolveLoader: {
         moduleExtensions: ['-loader']
@@ -82,25 +66,10 @@ configs.dev.app = {
     }
 };
 
-// modify base config for embed script in dev
-configs.dev.embed = _.cloneDeep(configs.dev.app);
+common.entry[`${pkg.version}/script`] = ['es6-promise/auto', `./src/script/script.js`];
 
-configs.dev.embed.entry = `${__dirname}/src/script/embed.js`;
-configs.dev.embed.output.filename = 'embed.js';
-configs.dev.embed.output.publicPath = '/';
+if (process.env.NODE_ENV === 'production') {
+    common.output.path = `${__dirname}/dist/`;
+}
 
-// modify app script config for built production version
-configs.prod.app = _.cloneDeep(configs.dev.app);
-
-configs.prod.app.output.path = __dirname + '/dist/' + pkg.version + '/';
-let prodDefinitions = _.cloneDeep(definitions);
-prodDefinitions['process.env.NODE_ENV'] = "'production'";
-configs.prod.app.plugins = [new webpack.DefinePlugin(prodDefinitions),uglify];
-
-// modify embed dev config for built production version
-configs.prod.embed = _.cloneDeep(configs.dev.embed);
-
-configs.prod.embed.output.path = __dirname + '/dist/';
-configs.prod.embed.plugins.push(uglify);
-
-module.exports = configs;
+module.exports = common;

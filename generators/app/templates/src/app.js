@@ -9,7 +9,7 @@ import logger from 'morgan';
 import path from 'path';
 import pkg from '../package.json';
 import webpack from 'webpack';
-import {dev as webpackConfig} from '../webpack.config';
+import webpackConfig from '../webpack.config';
 import webpackMiddleware from 'webpack-dev-middleware';
 
 const app = express();
@@ -53,23 +53,15 @@ app.get('/embed.html', (req, res) => {
  //   });
 });
 
-// embed.js webpack middleware
-
-const embedCompiler = webpack(webpackConfig.embed);
-
 import example from './routes/example';
 
 app.use(example);
 app.use(`/${pkg.version}`,example);
 
-app.use('/',webpackMiddleware(embedCompiler, {
-    noInfo: true
-}));
+// webpack middlware
+const compiler = webpack(webpackConfig);
 
-// script.js webpack middlware
-const compiler = webpack(webpackConfig.app);
-
-app.use(`/${pkg.version}`,webpackMiddleware(compiler, {
+app.use(['/',`/${pkg.version}`],webpackMiddleware(compiler, {
     noInfo: true
 }));
 

@@ -12,7 +12,7 @@ const awspublish = require('gulp-awspublish'),
       stylish = require('jshint-stylish'),
       uglify = require('gulp-uglify'),
       webpack = require('webpack'),
-      webpackConfig = require('./webpack.config').prod,
+      webpackConfig = require('./webpack.config'),
       yaml = require('js-yaml');
 
 gulp.task('style', function() {
@@ -42,12 +42,13 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('embedScripts', function(cb) {
-    webpack(webpackConfig.embed,cb);
-});
-
 gulp.task('scripts', function(cb) {
-    webpack(webpackConfig.app,cb);
+    if (process.env.NODE_ENV !== 'production') {
+        console.warn('NODE_ENV currently not set to "production", ' +
+                        'run yarn build to get this automatically');
+    }
+
+    webpack(webpackConfig,cb);
 });
 
 gulp.task('bakeEmbed', function(cb) {
@@ -150,5 +151,4 @@ gulp.task('build', ['bakeEmbed',
                     'copy-oembed',
                     'style',
                     'jshint',
-                    'scripts',
-                    'embedScripts']);
+                    'scripts']);

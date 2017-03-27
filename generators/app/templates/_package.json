@@ -5,7 +5,7 @@
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
+    "babel-loader": "^7.0.0-beta.1",
     "babel-preset-env": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-awspublish": "^3.3.0",
@@ -29,7 +29,6 @@
     "babel-preset-stage-2": "^6.22.0",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
-    "csv-parser": "^1.11.0",
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
     "file-loader": "^0.10.0",
@@ -43,16 +42,16 @@
     "serve-favicon": "^2.3.0",
     "vue": "^2.0.5",
     "vue-router": "^2.0.1",
-    "vue-server-renderer": "^2.0.5",
     "vue-template-compiler": "^2.1.10",
-    "vue-template-compiler-loader": "^1.0.4",
     "vuex": "^1.0.0",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "whatwg-fetch": "^2.0.2"
   },
   "scripts": {
-    "start": "./node_modules/babel-cli/bin/babel-node.js src/app --presets es2015,stage-2"
+    "start": "NODE_ENV=development ./node_modules/babel-cli/bin/babel-node.js src/app --presets es2015,stage-2",
+    "build": "NODE_ENV=production gulp build",
+    "push": "gulp push"
   },
   "jshintConfig": {
     "esnext": true
