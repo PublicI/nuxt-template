@@ -1,0 +1,8 @@
+{
+	"version": "1.0",
+	"type": "rich",
+	"width": "540",
+	"height": "800",
+	"url": "//cloudfront-files-1.publicintegrity.org/apps/<%= props.year %>/<%= props.month %>/<%= s.slugify(props.appname) %>/",
+	"html": "<div id=\"<%= s.camelize(props.appname,true) %>\"></div><script src=\"//cloudfront-files-1.publicintegrity.org/apps/<%= props.year %>/<%= props.month %>/<%= s.slugify(props.appname) %>/embed.js\" type=\"text/javascript\"></script>"
+}
