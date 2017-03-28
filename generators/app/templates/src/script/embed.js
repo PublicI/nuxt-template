@@ -4,6 +4,7 @@ let prefix = '';
 // is there a better way to do this?
 if (document.location.hostname != 'localhost' &&
     document.location.hostname != '10.0.2.2' &&
+    document.location.hostname != 'iw-files.s3.amazonaws.com' &&
     document.location.hostname.indexOf('apps.fivetwentyseven.com') === -1) {
     prefix = '//cloudfront-files-1.publicintegrity.org/apps/<%= props.year %>/<%= props.month %>/<%= s.slugify(props.appname) %>/';
 }
