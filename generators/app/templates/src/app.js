@@ -31,13 +31,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-// style.less middleware
 if (env === 'development') {
     // style.less middleware
     app.use(`/${pkg.version}`, less(path.join(__dirname, 'style')));
     app.use(`/${pkg.version}`, express.static(path.join(__dirname, 'style')));
 
-	// app.use('/' + pkg.version + '/fonts', express.static(path.join(__dirname, '..', 'node_modules', 'font-awesome', 'fonts')));
+    // app.use('/' + pkg.version + '/fonts', express.static(path.join(__dirname, '..', 'node_modules', 'font-awesome', 'fonts')));
 
     // serves up common scripts
     app.use('/apps/common/', express.static(path.join(__dirname, 'script', 'lib', 'common')));
