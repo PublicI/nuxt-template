@@ -1,5 +1,7 @@
 node_modules
 config.yml
-dist
+dist/*
+!dist/app*
+!dist/view
 .awspublish-iw-files
 src/style/style.css

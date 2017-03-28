@@ -1,22 +1,19 @@
 const pkg = require('./package.json'),
-      webpack = require('webpack');
+      webpack = require('webpack'),
+      merge = require('webpack-merge'),
+      nodeExternals = require('webpack-node-externals');
+
+const env = process.env.NODE_ENV;
 
 let common = {
     output: {
-        path: `${__dirname}/src/`,
         filename: '[name].js',
-        publicPath: '/'
+        publicPath: '/',
+        path: (env !== 'development' ? `${__dirname}/dist/` : `${__dirname}/src/`)
     },
-    entry: {
-        embed: './src/script/embed.js'
+    node: {
+        __dirname: false
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'PKG_VERSION': `'${pkg.version}'`,
-            'PKG_NAME': `'${pkg.name}'`,
-            'process.env.NODE_ENV': "'" + process.env.NODE_ENV + "'"
-        })
-    ],
     devtool: 'source-map',
     resolveLoader: {
         moduleExtensions: ['-loader']
@@ -60,18 +57,47 @@ let common = {
     }
 };
 
-common.entry[`${pkg.version}/script`] = ['es6-promise/auto', `./src/script/script.js`];
+let webEntry = {
+    embed: './src/script/embed.js'
+};
 
-if (process.env.NODE_ENV === 'production') {
-    common.output.path = `${__dirname}/dist/`;
+webEntry[`${pkg.version}/script`] = ['es6-promise/auto', `./src/script/script.js`];
 
-    common.plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        },
-        sourceMap: true
-    }));
+let definePlugin = new webpack.DefinePlugin({
+    'PKG_VERSION': `'${pkg.version}'`,
+    'PKG_NAME': `'${pkg.name}'`,
+    'process.env.NODE_ENV': "'" + (env !== 'development' ? 'production' : env) + "'"
+    // 'require.main': 'module'
+});
 
-}
+let uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+    compress: {
+        warnings: false
+    },
+    sourceMap: true
+});
 
-module.exports = common;
+let bannerPlugin = new webpack.BannerPlugin({
+    banner: 'require("source-map-support").install();',
+    raw: true,
+    entryOnly: false
+});
+
+module.exports = (env !== 'development' ? ['node','web'] : ['web']).map((target) => {
+    if (target == 'node') {
+        return merge(common,{
+            target: target,
+            entry: {
+                app: './src/app.js'
+            },
+            externals: [nodeExternals()],
+            plugins: [bannerPlugin,definePlugin]
+        });
+    }
+
+    return merge(common,{
+        target: target,
+        entry: webEntry,
+        plugins: [definePlugin,uglifyPlugin]
+    });
+});

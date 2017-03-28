@@ -12,6 +12,8 @@ import webpack from 'webpack';
 import webpackConfig from '../webpack.config';
 import webpackMiddleware from 'webpack-dev-middleware';
 
+const env = process.env.NODE_ENV;
+
 const app = express();
 
 // view engine setup
@@ -30,13 +32,16 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 // style.less middleware
-app.use(`/${pkg.version}`, less(path.join(__dirname, 'style')));
-app.use(`/${pkg.version}`, express.static(path.join(__dirname, 'style')));
+if (env === 'development') {
+    // style.less middleware
+    app.use(`/${pkg.version}`, less(path.join(__dirname, 'style')));
+    app.use(`/${pkg.version}`, express.static(path.join(__dirname, 'style')));
 
-// app.use('/' + pkg.version + '/fonts', express.static(path.join(__dirname, '..', 'node_modules', 'font-awesome', 'fonts')));
+	// app.use('/' + pkg.version + '/fonts', express.static(path.join(__dirname, '..', 'node_modules', 'font-awesome', 'fonts')));
 
-// serves up common scripts
-app.use('/apps/common/', express.static(path.join(__dirname, 'script', 'lib', 'common')));
+    // serves up common scripts
+    app.use('/apps/common/', express.static(path.join(__dirname, 'script', 'lib', 'common')));
+}
 
 app.get(['/','/index.html','/embed.html'], (req, res) => {
     res.render('index', {
@@ -55,17 +60,29 @@ import example from './routes/example';
 app.use(example);
 app.use(`/${pkg.version}`,example);
 
-// webpack middlware
-const compiler = webpack(webpackConfig);
+if (env === 'development') {
+    // webpack middlware
+    const compiler = webpack(webpackConfig);
 
-app.use(['/',`/${pkg.version}`],webpackMiddleware(compiler, {
-    noInfo: true
-}));
+    app.use(['/',`/${pkg.version}`],webpackMiddleware(compiler, {
+        noInfo: true
+    }));
 
-app.use(`/${pkg.version}`, express.static(path.join(__dirname)));
+    app.use(`/${pkg.version}`, express.static(path.join(__dirname)));
+}
+
+// http://stackoverflow.com/a/33633199
+app.use('/', (req, res, next) => {
+    if (req.url.match(/^\/app/)) {
+        return res.status(403).end('403 Forbidden');
+    }
+
+    next();
+});
+
 app.use('/', express.static(path.join(__dirname)));
 
-if (require.main === module) {
+if (!module.parent) {
     app.listen(process.env.PORT || 5000);
 }
 

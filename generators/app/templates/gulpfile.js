@@ -15,55 +15,44 @@ const awspublish = require('gulp-awspublish'),
       webpackConfig = require('./webpack.config'),
       yaml = require('js-yaml');
 
-gulp.task('style', function() {
-    return gulp.src('src/style/*.less')
-        .pipe(less({
-            paths: ['.', 'lib']
-        }))
-        /*
-        .pipe(csslint({
-            'box-model': false,
-            'adjoining-classes': false,
-            'import': false,
-            'known-properties': false
-        }))
-        .pipe(csslint.formatter())*/
-        .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('dist/' + pkg.version));
-});
+gulp.task('style', () => gulp.src('src/style/*.less')
+    .pipe(less({
+        paths: ['.', 'lib']
+    }))
+    /*
+    .pipe(csslint({
+        'box-model': false,
+        'adjoining-classes': false,
+        'import': false,
+        'known-properties': false
+    }))
+    .pipe(csslint.formatter())*/
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest(`dist/${pkg.version}`)));
 
-gulp.task('jshint', function() {
-    return gulp.src(['src/script/**/*.js'], {
-            base: 'src/script/'
-        })
-        .pipe(jshint({
-            esnext:true
-        }))
-        .pipe(jshint.reporter(stylish));
-});
+gulp.task('jshint', () => gulp.src(['src/script/**/*.js'], {
+        base: 'src/script/'
+    })
+    .pipe(jshint({
+        esnext:true
+    }))
+    .pipe(jshint.reporter(stylish)));
 
-gulp.task('scripts', function(cb) {
-    if (process.env.NODE_ENV !== 'production') {
-        console.warn('NODE_ENV currently not set to "production", ' +
-                        'run yarn build to get this automatically');
-    }
+gulp.task('scripts', cb => webpack(webpackConfig,cb));
 
-    webpack(webpackConfig,cb);
-});
-
-gulp.task('bakePreview', function(cb) {
-    hogan(__dirname + '/src/view/preview.html', {
-        pkg: pkg,
+gulp.task('bakePreview', cb => {
+    hogan(`${__dirname}/src/view/preview.html`, {
+        pkg,
         settings: {}
-    }, function(err, html) {
+    }, (err, html) => {
         if (err) {
             cb(err);
             return;
         }
 
-        fs.writeFile(__dirname + '/dist/preview.html', html, {
+        fs.writeFile(`${__dirname}/dist/preview.html`, html, {
             encoding: 'utf8'
-        }, function(err) {
+        }, err => {
             if (!err) {
                 cb(err);
                 return;
@@ -74,19 +63,19 @@ gulp.task('bakePreview', function(cb) {
     });
 });
 
-gulp.task('bakeIndex', function(cb) {
-    hogan(__dirname + '/src/view/index.html', {
-        pkg: pkg,
+gulp.task('bakeIndex', cb => {
+    hogan(`${__dirname}/src/view/index.html`, {
+        pkg,
         settings: {}
-    }, function(err, html) {
+    }, (err, html) => {
         if (err) {
             cb(err);
             return;
         }
 
-        fs.writeFile(__dirname + '/dist/index.html', html, {
+        fs.writeFile(`${__dirname}/dist/index.html`, html, {
             encoding: 'utf8'
-        }, function(err) {
+        }, err => {
             if (!err) {
                 cb(err);
                 return;
@@ -97,25 +86,30 @@ gulp.task('bakeIndex', function(cb) {
     });
 });
 
-gulp.task('copy', function() {
-    return gulp.src(['src/images/**'], {
-            base: 'src/'
-        })
-        .pipe(gulp.dest('dist/' + pkg.version));
+gulp.task('copy', () => {
+    const imgCopy = gulp.src(['src/img/**'], {
+                        base: 'src/'
+                    })
+                    .pipe(gulp.dest(`dist/${pkg.version}`));
+
+    const viewCopy = gulp.src(['src/view/**'], {
+                        base: 'src/'
+                    })
+                    .pipe(gulp.dest('dist'));
+
+    const oembedCopy = gulp.src(['src/data/oembed.json'], {
+                        base: 'src/data/'
+                    })
+                    .pipe(gulp.dest('dist/'));
+
+
+    return merge(imgCopy,viewCopy,oembedCopy);
 });
 
+gulp.task('push', cb => {
+    const config = yaml.safeLoad(fs.readFileSync(`${__dirname}/config.yml`, 'utf8'));
 
-gulp.task('copy-oembed', function() {
-    return gulp.src(['src/data/oembed.json'], {
-            base: 'src/data/'
-        })
-        .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('push', function(cb) {
-    var config = yaml.safeLoad(fs.readFileSync(__dirname + '/config.yml', 'utf8'));
-
-    var publisher = awspublish.create({
+    const publisher = awspublish.create({
         accessKeyId: config.aws.key,
         secretAccessKey: config.aws.secret,
         params: {
@@ -123,21 +117,21 @@ gulp.task('push', function(cb) {
         }
     });
 
-    var rest = gulp.src(['dist/' + pkg.version + '/**'])
-        .pipe(rename(function(path) {
-            path.dirname = '/apps/<%= props.year %>/<%= props.month %>/' + pkg.name + '/' + pkg.version + '/' + path.dirname;
+    const rest = gulp.src([`dist/${pkg.version}/**`])
+        .pipe(rename(path => {
+            path.dirname = `/apps/2017/03/${pkg.name}/${pkg.version}/${path.dirname}`;
         }))
         .pipe(awspublish.gzip())
         .pipe(publisher.publish())
         .pipe(publisher.cache())
         .pipe(awspublish.reporter())
-        .on('end', function() {
-            gulp.src(['dist/*'])
-                .pipe(rename(function(path) {
-                    path.dirname = '/apps/<%= props.year %>/<%= props.month %>/' + pkg.name + '/' + path.dirname;
+        .on('end', () => {
+            gulp.src(['dist/*','!dist/view/**','!dist/app*'])
+                .pipe(rename(path => {
+                    path.dirname = `/apps/2017/03/${pkg.name}/${path.dirname}`;
                 }))
                 .pipe(publisher.publish({
-                    'Cache-Control': 's-maxage=' + (60 * 2) + ',max-age=0'
+                    'Cache-Control': `s-maxage=${60 * 2},max-age=0`
                 }))
                 .pipe(publisher.cache())
                 .pipe(awspublish.reporter())
@@ -148,7 +142,6 @@ gulp.task('push', function(cb) {
 gulp.task('build', ['bakePreview',
                     'bakeIndex',
                     'copy',
-                    'copy-oembed',
                     'style',
                     'jshint',
                     'scripts']);

@@ -40,6 +40,7 @@
     "morgan": "^1.7.0",
     "raw-loader": "^0.5.1",
     "serve-favicon": "^2.3.0",
+    "source-map-support": "^0.4.14",
     "vue": "^2.0.5",
     "vue-router": "^2.0.1",
     "vue-template-compiler": "^2.1.10",
@@ -47,12 +48,14 @@
     "vuex": "^1.0.0",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
+    "webpack-merge": "^4.1.0",
+    "webpack-node-externals": "^1.5.4",
     "whatwg-fetch": "^2.0.2"
   },
+  "main": "./dist/app.js",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/babel-cli/bin/babel-node.js src/app --presets es2015,stage-2",
-    "build": "NODE_ENV=production gulp build",
-    "push": "gulp push"
+    "start": "node ./dist/app.js",
+    "dev": "NODE_ENV=development ./node_modules/babel-cli/bin/babel-node.js src/app --presets es2015,stage-2"
   },
   "jshintConfig": {
     "esnext": true
