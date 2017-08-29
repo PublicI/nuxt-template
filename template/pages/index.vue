@@ -16,19 +16,21 @@
 {{{{/raw}}}}
 
 <script>
-import axios from '~/plugins/axios'
+import axios from '~/plugins/axios';
 
 export default {
     async asyncData () {
-        let { data } = await axios.get('/api/examples')
-        return { examples: data }
+        let { data } = await axios.get('/api/examples');
+        return {
+            examples: data
+        };
     },
     head () {
         return {
             title: 'examples'
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped>

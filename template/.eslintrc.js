@@ -10,6 +10,7 @@ module.exports = {
     plugins: ['html'],
     // add your custom rules here
     rules: {
+        'indent': ['warn', 4],
         semi: [1, 'always'],
         'no-console': [
             1,
