@@ -1,23 +1,25 @@
 This is a generator for single-page apps and embeddable graphics for use by the Center for Public Integrity's news dev team. It sets things up real good so you don't have to worry about it none.
 
-## Getting Started
+## Getting started
 
-First, install yo if you don't have yo:
-
-```bash
-npm install -g yo
-```
-
-Then, to install this generator, run:
+This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). If you don't have it, install it like:
 
 ```bash
-npm install -g github:PublicI/app-generator
+yarn global add vue-cli
 ```
 
-If this gives you trouble, try [this guide](https://help.github.com/articles/error-permission-denied-publickey/)
-
-Finally, create a project directory and run the generator in it:
+Then, to generate the project:
 
 ```bash
-yo publici-app
+vue init PublicI/app-generator <project-name>
+cd <project-name> # move to your project
+yarn
 ```
+
+To use:
+
+| Command | Description |
+|---------|-------------|
+| yarn dev | Start ExpressJS server in development with Nuxt.js in dev mode (hot reloading). Listen on [http://localhost:3000](http://localhost:3000). |
+| yarn build | Build the nuxt.js web application for production. |
+| yarn start | Start ExpressJS server in production. |
