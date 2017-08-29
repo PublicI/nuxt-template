@@ -10,7 +10,7 @@ const examples = [
 ];
 
 /* GET example listing. */
-router.get('/example', function(req, res, next) {
+router.get('/examples', function(req, res, next) {
     res.json(examples);
 });
 
