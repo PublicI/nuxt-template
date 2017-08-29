@@ -7,6 +7,7 @@
     "scripts": {
         "dev": "backpack dev",
         "build": "nuxt build && backpack build",
+        "generate": "nuxt generate",
         "start": "cross-env NODE_ENV=production node build/main.js",
         "precommit": "yarn lint",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
