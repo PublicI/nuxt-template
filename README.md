@@ -11,7 +11,7 @@ yarn global add vue-cli
 Then, to generate the project:
 
 ```bash
-vue init PublicI/app-generator <project-name>
+vue init PublicI/app-generator#nuxt <project-name>
 cd <project-name> # move to your project
 yarn
 ```
