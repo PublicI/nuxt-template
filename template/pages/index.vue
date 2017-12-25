@@ -16,14 +16,20 @@
 {{{{/raw}}}}
 
 <script>
-import axios from '~/plugins/axios';
-
 export default {
-    async asyncData () {
-        let { data } = await axios.get('/api/examples');
-        return {
-            examples: data
-        };
+    async asyncData ({ params, error }) {
+        try {
+            let data = this.$axios.$get('/api/examples');
+
+            return {
+                examples: data
+            };
+        } catch (e) {
+            error({
+                statusCode: 404,
+                message: 'Example not found'
+            });
+        }
     },
     head () {
         return {
