@@ -17,19 +17,12 @@
 <script>
 export default {
     name: 'id',
-    async asyncData ({ params, error }) {
-        try {
-            let data = this.$axios.$get('/api/examples/' + params.id);
+    async asyncData ({ app, params }) {
+        let data = await app.$axios.$get('/api/examples/' + params.id);
 
-            return {
-                example: data
-            };
-        } catch (e) {
-            error({
-                statusCode: 404,
-                message: 'Example not found'
-            });
-        }
+        return {
+            example: data
+        };
     },
     head () {
         return {

@@ -1,3 +1,5 @@
+/* global Typekit:false */
+
 const config = {
     kitId: 'wnz3ozp',
     scriptTimeout: 3000,
