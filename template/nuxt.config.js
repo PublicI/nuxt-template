@@ -1,9 +1,11 @@
+const pkg = require('./package.json');
+
 module.exports = {
     /*
      ** Headers of the page
      */
     head: {
-        title: 'starter',
+        title: '{{ name }}',
         meta: [
             { charset: 'utf-8' },
             {
@@ -13,15 +15,50 @@ module.exports = {
             {
                 hid: 'description',
                 name: 'description',
-                content: 'Nuxt.js project'
+                content: '{{ description }}'
             }
         ],
-        link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+        link: [
+            {
+                rel: 'icon',
+                type: 'image/x-icon',
+                href: `/${pkg.name}/favicon.ico`
+            }
+        ]
+    },
+    modules: [
+        '@nuxtjs/axios',
+        [
+            '@nuxtjs/google-analytics',
+            {
+                id: 'UA-3383794-4'
+            }
+        ]
+    ],
+    plugins: [
+        { src: '~/plugins/pym.js', ssr: false },
+        { src: '~/plugins/typekit.js', ssr: false },
+        { src: '~plugins/chartbeat.js', ssr: false }
+    ],
+    axios: {
+        baseURL: process.server
+            ? `http://${process.env.HOST || 'localhost'}:${process.env.PORT ||
+                  3000}`
+            : ''
+    },
+    generate: {
+        minify: {
+            collapseWhitespace: false,
+            removeEmptyAttributes: false
+        }
     },
     /*
      ** Global CSS
      */
-    css: ['~/assets/css/main.css'],
+    router: {
+        base: `/${pkg.name}/`
+    },
+    css: ['~/assets/css/site.css', '~/assets/css/main.css'],
     /*
      ** Add axios globally
      */

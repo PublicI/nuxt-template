@@ -1,4 +1,4 @@
-This is a generator for single-page apps and embeddable graphics for use by the Center for Public Integrity's news dev team. It sets things up real good so you don't have to worry about it none.
+This is a generator for single-page apps and embeddable graphics for use by the Center for Public Integrity's data team. It sets things up real good so you don't have to worry about it none.
 
 ## Getting started
 
