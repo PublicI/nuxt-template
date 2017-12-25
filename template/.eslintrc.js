@@ -10,6 +10,11 @@ module.exports = {
     plugins: ['html'],
     // add your custom rules here
     rules: {
+        'space-infix-ops': ['warn'],
+        'padded-blocks': ['warn'],
+        'no-trailing-spaces': ['warn'],
+        'no-unused-vars': ['warn'],
+        'spaced-comment': ['warn'],
         'indent': ['warn', 4],
         semi: [1, 'always'],
         'no-console': [
