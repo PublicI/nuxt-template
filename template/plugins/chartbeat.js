@@ -1,6 +1,12 @@
 /* eslint-disable */
 
 export default ({ app }) => {
+    if (document &&
+        document.referrer &&
+        document.referrer.indexOf('publicintegrity.org') !== -1) {
+        return;
+    }
+
     //Chartbeat
     window._sf_async_config={};
     /** CONFIGURATION START **/

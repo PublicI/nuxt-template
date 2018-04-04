@@ -31,14 +31,19 @@ module.exports = {
         [
             '@nuxtjs/google-analytics',
             {
-                id: 'UA-3383794-4'
+                id: 'UA-3383794-4',
+                debug: {
+                    sendHitTask: !(document &&
+                        document.referrer &&
+                        document.referrer.indexOf('publicintegrity.org') !== -1)
+                }
             }
         ]
     ],
     plugins: [
         { src: '~/plugins/pym.js', ssr: false },
         { src: '~/plugins/typekit.js', ssr: false },
-        { src: '~plugins/chartbeat.js', ssr: false }
+        { src: '~/plugins/chartbeat.js', ssr: false }
     ],
     axios: {
         baseURL: process.server
