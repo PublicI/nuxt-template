@@ -33,9 +33,12 @@ module.exports = {
             {
                 id: 'UA-3383794-4',
                 debug: {
-                    sendHitTask: !(document &&
+                    sendHitTask: !(
+                        typeof document !== 'undefined' &&
+                        document &&
                         document.referrer &&
-                        document.referrer.indexOf('publicintegrity.org') !== -1)
+                        document.referrer.indexOf('publicintegrity.org') !== -1
+                    )
                 }
             }
         ]
