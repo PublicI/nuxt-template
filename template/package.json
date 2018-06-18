@@ -19,7 +19,7 @@
         "axios": "^0.16.2",
         "cross-env": "^5.0.1",
         "express": "^4.15.3",
-        "gulp": "^3.9.1",
+        "gulp": "4.0.0",
         "gulp-awspublish": "^3.3.0",
         "gulp-rename": "^1.2.2",
         "nuxt": "^1.4.0",
