@@ -1,10 +1,10 @@
 {{{{raw}}}}
 <template>
-    <section class="container">
-        <h1 class="title">
+    <section>
+        <h1>
             Example
         </h1>
-        <h2 class="info">
+        <h2>
             {{ example.name }}
         </h2>
         <nuxt-link class="button" to="/">
@@ -33,15 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    margin-top: 30px;
-}
-.info {
-    font-weight: 300;
-    color: #9aabb1;
-    margin: 0;
-    margin-top: 10px;
-}
 .button {
     margin-top: 30px;
 }

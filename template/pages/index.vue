@@ -1,7 +1,7 @@
 {{{{raw}}}}
 <template>
-    <section class="container">
-        <h1 class="title">
+    <section>
+        <h1>
             EXAMPLES
         </h1>
         <ul class="examples">
@@ -33,9 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.title {
-    margin: 30px 0;
-}
 .examples {
     list-style: none;
     margin: 0;
