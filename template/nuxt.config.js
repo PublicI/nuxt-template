@@ -52,7 +52,7 @@ module.exports = {
         baseURL: process.server
             ? `http://${process.env.HOST || 'localhost'}:${process.env.PORT ||
                   3000}`
-            : ''
+            : `/${pkg.name}/`
     },
     generate: {
         minify: {
