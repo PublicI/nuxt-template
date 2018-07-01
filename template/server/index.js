@@ -1,7 +1,7 @@
-import express from 'express';
-import pkg from '../package.json';
+const express = require('express');
+const pkg = require('../package.json');
 
-import example from './api/example';
+const example = require('./api/example');
 
 const app = express();
 
