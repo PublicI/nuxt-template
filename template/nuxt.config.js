@@ -70,6 +70,10 @@ module.exports = {
     /*
      ** Add axios globally
      */
+    serverMiddleware: [
+        // API middleware
+        '~/server/index.js'
+    ],
     build: {
         vendor: ['axios'],
         /*

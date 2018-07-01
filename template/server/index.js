@@ -1,38 +1,19 @@
 import express from 'express';
-import { Nuxt, Builder } from 'nuxt';
 import pkg from '../package.json';
 
-import api from './api';
+import example from './api/example';
 
 const app = express();
-const host = process.env.HOST || '127.0.0.1';
-const port = process.env.PORT || 3000;
-
-app.set('port', port);
 
 app.get('/', (req, res) => {
     res.redirect('/' + pkg.name + '/');
 });
 
 // Import API Routes
-app.use('/api', api);
+app.use('/api', example);
 
-// Import and Set Nuxt.js options
-let config = require('../nuxt.config.js');
-config.dev = !(process.env.NODE_ENV === 'production');
-
-// Init Nuxt.js
-const nuxt = new Nuxt(config);
-
-// Build only in dev mode
-if (config.dev) {
-    const builder = new Builder(nuxt);
-    builder.build();
-}
-
-// Give nuxt middleware to express
-app.use(nuxt.render);
-
-// Listen the server
-app.listen(port, host);
-console.log('Server listening on ' + host + ':' + port); // eslint-disable-line no-console
+// Export the server middleware
+module.exports = {
+    path: '/',
+    handler: app
+};
