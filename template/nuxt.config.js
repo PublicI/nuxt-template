@@ -67,13 +67,13 @@ module.exports = {
         base: `/${pkg.name}/`
     },
     css: ['~/assets/css/site.css', '~/assets/css/main.css'],
-    /*
-     ** Add axios globally
-     */
     serverMiddleware: [
         // API middleware
         '~/server/index.js'
     ],
+    /*
+     ** Add axios globally
+     */
     build: {
         vendor: ['axios'],
         /*
