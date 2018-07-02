@@ -5,13 +5,14 @@
     "author": "{{ author }}",
     "private": true,
     "scripts": {
-        "dev": "nuxt",
         "build": "nuxt build",
+        "dev": "nuxt",
         "generate": "nuxt generate",
-        "start": "cross-env NODE_ENV=production node build/main.js",
-        "precommit": "yarn lint",
+        "heroku-postbuild": "npm run build",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-        "heroku-postbuild": "npm run build"
+        "precommit": "yarn lint",
+        "push": "gulp push",
+        "start": "cross-env NODE_ENV=production node build/main.js"
     },
     "dependencies": {
         "@nuxtjs/axios": "^4.5.0",
@@ -34,6 +35,7 @@
         "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-standard": "^3.0.1",
         "gulp": "^4.0.0",
+        "gulp-cli": "^2.0.1",
         "gulp-awspublish": "^3.3.0",
         "gulp-rename": "^1.2.2"
     }
