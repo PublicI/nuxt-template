@@ -5,7 +5,7 @@ This is a generator for single-page apps and embeddable graphics for use by the 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). If you don't have it, install it like:
 
 ```bash
-yarn global add vue-cli
+yarn global add vue-cli@2
 ```
 
 Then, to generate the project:
