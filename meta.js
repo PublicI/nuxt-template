@@ -14,7 +14,7 @@ module.exports = {
             type: 'string',
             required: false,
             message: 'Project description',
-            default: 'A Center for Public Integrity project'
+            default: ''
         },
         author: {
             type: 'string',
