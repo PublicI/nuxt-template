@@ -20,6 +20,8 @@ To use:
 
 | Command | Description |
 |---------|-------------|
-| yarn dev | Start ExpressJS server in development with Nuxt.js in dev mode (hot reloading). Listen on [http://localhost:3000](http://localhost:3000). |
+| yarn dev | Start server in development with Nuxt.js in dev mode (hot reloading). Listen on [http://localhost:3000](http://localhost:3000). |
 | yarn build | Build the nuxt.js web application for production. |
-| yarn start | Start ExpressJS server in production. |
+| yarn start | Start server in production. |
+| yarn generate | Generate static flat files. |
+| yarn push | Push to S3. |
