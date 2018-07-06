@@ -16,13 +16,11 @@
 {{{{/raw}}}}
 
 <script>
-export default {
-    async asyncData ({ app, error }) {
-        let data = await app.$axios.$get('/api/examples');
+import { examples } from '~/assets/examples.json';
 
-        return {
-            examples: data
-        };
+export default {
+    data () {
+        return examples;
     },
     head () {
         return {
