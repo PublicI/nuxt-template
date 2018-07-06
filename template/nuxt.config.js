@@ -60,12 +60,12 @@ module.exports = {
             removeEmptyAttributes: false
         }
     },
-    /*
-     ** Global CSS
-     */
     router: {
         base: `/${pkg.name}/`
     },
+    /*
+     ** Global CSS
+     */
     css: ['~/assets/css/site.css', '~/assets/css/main.css'],
     serverMiddleware: [
         // API middleware
