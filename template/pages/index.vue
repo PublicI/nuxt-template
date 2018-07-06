@@ -16,7 +16,7 @@
 {{{{/raw}}}}
 
 <script>
-import { examples } from '~/assets/examples.json';
+import examples from '~/assets/examples.json';
 
 export default {
     data () {
