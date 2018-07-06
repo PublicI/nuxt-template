@@ -76,6 +76,12 @@ module.exports = {
          ** Run ESLINT on save
          */
         extend(config, ctx) {
+            config.module.rules.push({
+                test: /\.(csv)$/,
+                loader: 'dsv-loader',
+                exclude: /(node_modules)/
+            });
+
             if (ctx.isClient) {
                 config.module.rules.push({
                     enforce: 'pre',
