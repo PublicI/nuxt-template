@@ -1,0 +1,53 @@
+pipeline:
+  # restore-cache:
+  #   image: plugins/s3-cache:1
+  #   pull: true
+  #   restore: true
+  #   secrets: [ aws_access_key_id, aws_secret_access_key ]
+  #   root: publici-drone/
+  #   mount:
+  #     - ./.yarn-cache
+  #     - ./node_modules
+
+  install:
+    image: node:8.11.3
+    commands:
+      - yarn config set cache-folder .yarn-cache
+      - yarn install --pure-lockfile
+
+  generate:
+    image: node:8.11.3
+    commands:
+      - yarn generate
+
+  push:
+    image: node:8.11.3
+    secrets: [aws_access_key_id, aws_secret_access_key]
+    commands:
+      - yarn push
+    when:
+      branch: master
+
+  # rebuild-cache:
+  #   image: plugins/s3-cache:1
+  #   pull: true
+  #   rebuild: true
+  #   secrets: [ aws_access_key_id, aws_secret_access_key ]
+  #   root: publici-drone/
+  #   mount:
+  #     - ./.yarn-cache
+  #     - ./node_modules
+  #   when:
+  #     branch: master
+
+  # flush-cache:
+  #   image: plugins/s3-cache:1
+  #   pull: true
+  #   secrets: [ aws_access_key_id, aws_secret_access_key ]
+  #   root: publici-drone/
+  #   flush: true
+
+  slack:
+    image: plugins/slack
+    secrets: [ slack_webhook ]
+    channel: data-alerts
