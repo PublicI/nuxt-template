@@ -15,6 +15,7 @@ module.exports = {
         'no-trailing-spaces': ['warn'],
         'no-unused-vars': ['warn'],
         'spaced-comment': ['warn'],
+        'brace-style': ['warn'],
         'indent': ['warn', 4],
         semi: [1, 'always'],
         'no-console': [
