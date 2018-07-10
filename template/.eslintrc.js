@@ -26,7 +26,7 @@ module.exports = {
         'no-unused-vars': ['warn'],
         'padded-blocks': ['warn'],
         quotes: ['warn'],
-        semi: ['warn'],
+        semi: [1,'always'],
         'space-before-function-paren': 'off',
         'space-infix-ops': ['warn'],
         'spaced-comment': ['warn']
