@@ -10,25 +10,26 @@ module.exports = {
     plugins: ['html'],
     // add your custom rules here
     rules: {
-        'space-infix-ops': ['warn'],
-        'padded-blocks': ['warn'],
-        'no-trailing-spaces': ['warn'],
-        'no-unused-vars': ['warn'],
-        'spaced-comment': ['warn'],
         'brace-style': ['warn'],
-        'indent': ['warn', 4],
-        semi: [1, 'always'],
+        'comma-dangle': [2, 'only-multiline'],
+        'comma-spacing': ['warn'],
+        indent: ['warn', 4],
         'no-console': [
             1,
             {
                 allow: ['warn', 'error']
             }
         ],
-        'comma-dangle': [2, 'only-multiline'],
-        semi: [2, 'always'],
         'no-extra-semi': 2,
+        'no-multiple-empty-lines': ['warn'],
+        'no-trailing-spaces': ['warn'],
+        'no-unused-vars': ['warn'],
+        'padded-blocks': ['warn'],
+        quotes: ['warn'],
+        semi: ['warn'],
         'space-before-function-paren': 'off',
-        quotes: [2, 'single', 'avoid-escape']
+        'space-infix-ops': ['warn'],
+        'spaced-comment': ['warn']
     },
     globals: {}
 };
