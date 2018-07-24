@@ -19,6 +19,11 @@ module.exports = {
         author: {
             type: 'string',
             message: 'Author'
+        },
+        host: {
+            type: 'string',
+            message: 'Domain',
+            default: 'apps.publicintegrity.org'
         }
     },
     completeMessage:

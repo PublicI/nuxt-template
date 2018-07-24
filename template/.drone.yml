@@ -50,4 +50,9 @@ pipeline:
   slack:
     image: plugins/slack
     secrets: [ slack_webhook ]
-    channel: data-alerts
+    template: >
+      {{#success build.status}}
+        published https://{{host}}/{{name}}/
+      {{else}}
+        failed publishing https://{{host}}/{{name}}/
+      {{/success}}

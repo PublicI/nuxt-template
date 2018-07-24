@@ -1,13 +1,13 @@
 /* eslint-disable */
 
 (function () {
-    var prefix = 'https://apps.publicintegrity.org/{{ name }}/';
+    var prefix = 'https://{{host}}/{{ name }}/';
 /*
     if (document.location.hostname !== 'localhost' &&
         document.location.hostname !== '10.0.2.2' &&
         document.location.hostname !== 'iw-files.s3.amazonaws.com' &&
         document.location.hostname.indexOf('apps.fivetwentyseven.com') === -1) {
-        prefix = '//apps.publicintegrity.org/{{ name }}/';
+        prefix = '//{{host}}/{{ name }}/';
     }
 */
     try {

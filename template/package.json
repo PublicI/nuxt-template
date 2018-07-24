@@ -11,7 +11,7 @@
         "heroku-postbuild": "npm run build",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
         "precommit": "yarn lint",
-        "push": "s3-deploy './dist/**' --cwd './dist/' --bucket apps.publicintegrity.org --gzip --filePrefix $npm_package_name --cache 120",
+        "push": "s3-deploy './dist/**' --cwd './dist/' --bucket {{host}} --gzip --filePrefix $npm_package_name --cache 120",
         "start": "nuxt start"
     },
     "dependencies": {
