@@ -51,8 +51,17 @@ pipeline:
     image: plugins/slack
     secrets: [ slack_webhook ]
     template: >
+    {{{{raw}}}}
       {{#success build.status}}
+    {{{{/raw}}}}
+    {{{{raw}}}}
         published https://{{host}}/{{name}}/
+    {{{{/raw}}}}
+    {{{{raw}}}}
       {{else}}
+    {{{{/raw}}}}
+    {{{{raw}}}}
         failed publishing https://{{host}}/{{name}}/
+    {{{{raw}}}}
       {{/success}}
+    {{{{/raw}}}}
