@@ -10,18 +10,18 @@ pipeline:
   #     - ./node_modules
 
   install:
-    image: node:8.11.3
+    image: node:8.12.0-alpine
     commands:
       - yarn config set cache-folder .yarn-cache
       - yarn install --pure-lockfile
 
   generate:
-    image: node:8.11.3
+    image: node:8.12.0-alpine
     commands:
       - yarn generate
 
   push:
-    image: node:8.11.3
+    image: node:8.12.0-alpine
     secrets: [aws_access_key_id, aws_secret_access_key]
     commands:
       - yarn push
