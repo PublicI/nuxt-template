@@ -26,6 +26,7 @@ module.exports = {
             default: 'apps.publicintegrity.org'
         }
     },
+    skipInterpolation: ['node_modules/**'],
     completeMessage:
         '{{#inPlace}}To get started:\n\n  yarn\n  yarn dev{{else}}To get started:\n\n  cd {{destDirName}}\n  yarn\n  yarn dev{{/inPlace}}'
 };
