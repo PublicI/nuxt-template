@@ -1,0 +1,14 @@
+{
+  "name": "generator-publici-app",
+  "version": "1.0.0",
+  "repository": "https://github.com/PublicI/app-generator.git",
+  "author": "Chris Zubak-Skees <chriszs@gmail.com>",
+  "license": "GPLv2",
+  "private": true,
+  "dependencies": {
+    "vue-cli": "2"
+  },
+  "scripts": {
+    "vue": "vue"
+  }
+}

@@ -12,12 +12,12 @@ pipeline:
   install-cli:
     image: node:8.12.0-alpine
     commands:
-      - yarn global add vue-cli@2
+      - yarn
 
   scaffold:
     image: node:8.12.0-alpine
     commands:
-      - printf '\n\n\n\n' | vue init . test
+      - printf '\n\n\n\n' | yarn vue init . test
 
   install-deps:
     image: node:8.12.0-alpine
