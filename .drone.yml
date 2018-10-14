@@ -17,7 +17,8 @@ pipeline:
   scaffold:
     image: node:8.12.0-alpine
     commands:
-      - printf '\n\n\n\n' | yarn vue init . test
+      - chmod +x scaffold.sh
+      - ./scaffold.sh
 
   install-deps:
     image: node:8.12.0-alpine
