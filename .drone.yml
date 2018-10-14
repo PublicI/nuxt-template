@@ -12,12 +12,12 @@ pipeline:
   install-cli:
     image: node:8.12.0-alpine
     commands:
-      - apk add expect
       - yarn
 
   scaffold:
     image: node:8.12.0-alpine
     commands:
+      - apk add expect
       - chmod +x scaffold.sh
       - ./scaffold.sh
 
