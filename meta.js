@@ -28,5 +28,5 @@ module.exports = {
     },
     skipInterpolation: ['node_modules/**'],
     completeMessage:
-        '{{#inPlace}}To get started:\n\n  yarn\n  yarn dev{{else}}To get started:\n\n  cd {{destDirName}}\n  yarn\n  yarn dev{{/inPlace}}'
+        '{{#inPlace}}To get started:\n\n  npm\n  npm run dev{{else}}To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev{{/inPlace}}'
 };
