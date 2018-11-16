@@ -54,12 +54,6 @@ module.exports = {
                   3000}`
             : `/${pkg.name}/`
     },
-    generate: {
-        minify: {
-            collapseWhitespace: false,
-            removeEmptyAttributes: false
-        }
-    },
     router: {
         base: `/${pkg.name}/`
     },
@@ -71,6 +65,12 @@ module.exports = {
      ** Add axios globally
      */
     build: {
+        html: {
+            minify: {
+                collapseWhitespace: false,
+                removeEmptyAttributes: false
+            }
+        },
         /*
          ** Run ESLINT on save
          */
@@ -81,7 +81,7 @@ module.exports = {
                 exclude: /(node_modules)/
             });
 
-            if (ctx.isClient) {
+            if (ctx.isClient && process.env.NODE_ENV !== 'production') {
                 config.module.rules.push({
                     enforce: 'pre',
                     test: /\.(js|vue)$/,

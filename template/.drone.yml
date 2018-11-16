@@ -6,25 +6,25 @@ pipeline:
   #   secrets: [ aws_access_key_id, aws_secret_access_key ]
   #   root: publici-drone/
   #   mount:
-  #     - ./.yarn-cache
+  #     - ./.npm-cache
   #     - ./node_modules
 
   install:
     image: node:10.13-alpine
     commands:
-      - yarn config set cache-folder .yarn-cache
-      - yarn install --pure-lockfile
+      - npm config set cache .npm-cache
+      - npm ci --production
 
   generate:
     image: node:10.13-alpine
     commands:
-      - yarn generate
+      - npm run generate
 
   push:
     image: node:10.13-alpine
     secrets: [aws_access_key_id, aws_secret_access_key]
     commands:
-      - yarn push
+      - npm run push
     when:
       branch: master
 
@@ -35,7 +35,7 @@ pipeline:
   #   secrets: [ aws_access_key_id, aws_secret_access_key ]
   #   root: publici-drone/
   #   mount:
-  #     - ./.yarn-cache
+  #     - ./.npm-cache
   #     - ./node_modules
   #   when:
   #     branch: master

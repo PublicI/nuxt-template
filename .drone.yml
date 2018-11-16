@@ -6,13 +6,13 @@ pipeline:
   #   secrets: [ aws_access_key_id, aws_secret_access_key ]
   #   root: publici-drone/
   #   mount:
-  #     - ./.yarn-cache
+  #     - ./.npm-cache
   #     - ./node_modules
 
   install-cli:
     image: node:8.12.0-alpine
     commands:
-      - yarn
+      - npm ci
 
   scaffold:
     image: node:8.12.0-alpine
@@ -25,14 +25,14 @@ pipeline:
     image: node:8.12.0-alpine
     commands:
       - cd test
-      - yarn config set cache-folder .yarn-cache
-      - yarn install --pure-lockfile
+      - npm config set cache .npm-cache
+      - npm ci --production
 
   generate:
     image: node:8.12.0-alpine
     commands:
       - cd test
-      - yarn generate
+      - npm run generate
 
   # rebuild-cache:
   #   image: plugins/s3-cache:1
@@ -41,7 +41,7 @@ pipeline:
   #   secrets: [ aws_access_key_id, aws_secret_access_key ]
   #   root: publici-drone/
   #   mount:
-  #     - ./.yarn-cache
+  #     - ./.npm-cache
   #     - ./node_modules
   #   when:
   #     branch: master
