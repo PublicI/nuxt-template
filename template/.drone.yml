@@ -50,6 +50,8 @@ pipeline:
   slack:
     image: plugins/slack
     secrets: [ slack_webhook ]
+    when:
+      status: [ success, failure ]
     template: >
     {{{{raw}}}}
       {{#success build.status}}
