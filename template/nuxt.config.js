@@ -21,8 +21,8 @@ module.exports = {
         link: [
             {
                 rel: 'icon',
-                type: 'image/x-icon',
-                href: `/${pkg.name}/favicon.ico`
+                type: 'image/png',
+                href: `/${pkg.name}/favicon.png`
             }
         ]
     },
