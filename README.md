@@ -6,6 +6,7 @@ This is a generator for single-page apps and embeddable graphics for use by the 
 
 ```bash
 npx sao PublicI/app-generator#sao my-project
+cd my-project
 ```
 
 To use:
