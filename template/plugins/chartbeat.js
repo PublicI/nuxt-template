@@ -13,7 +13,7 @@ export default ({ app }) => {
     _sf_async_config.uid = 2241;
     _sf_async_config.domain = "publicintegrity.org";
     _sf_async_config.path = window.location.pathname;
-    _sf_async_config.title = '{{ name }}';
+    _sf_async_config.title = '<%= name %>';
     /** CONFIGURATION END **/
     (function(){
         function loadChartbeat() {

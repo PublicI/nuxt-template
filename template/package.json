@@ -1,8 +1,8 @@
 {
-    "name": "{{ name }}",
+    "name": "<%= name %>",
     "version": "0.1.0",
-    "description": "{{ description }}",
-    "author": "{{ author }}",
+    "description": "<%= description %>",
+    "author": "<%= author %>",
     "private": true,
     "scripts": {
         "build": "nuxt build",
@@ -11,7 +11,7 @@
         "heroku-postbuild": "npm run build",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
         "precommit": "npm run lint",
-        "push": "s3-deploy './dist/**' --cwd './dist/' --bucket {{host}} --gzip --filePrefix $npm_package_name --cache 120",
+        "push": "s3-deploy './dist/**' --cwd './dist/' --bucket <%= host %> --gzip --filePrefix $npm_package_name --cache 120",
         "start": "nuxt start"
     },
     "dependencies": {

@@ -1,4 +1,3 @@
-{{{{raw}}}}
 <template>
     <section>
         <h1>
@@ -13,7 +12,6 @@
         </ul>
     </section>
 </template>
-{{{{/raw}}}}
 
 <script>
 import examples from '~/assets/examples.json';

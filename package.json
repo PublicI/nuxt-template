@@ -1,14 +1,19 @@
 {
-  "name": "generator-publici-app",
-  "version": "1.0.0",
-  "repository": "https://github.com/PublicI/app-generator.git",
-  "author": "Chris Zubak-Skees <chriszs@gmail.com>",
-  "license": "GPLv2",
-  "private": true,
-  "dependencies": {
-    "vue-cli": "2"
-  },
+  "name": "sao-app-generator",
+  "version": "0.1.0",
+  "description": "It sets things up real good so you don't have to worry about it none.",
+  "author": "Center for Public Integrity <data@publicintegrity.org> (http://publicintegrity.org)",
+  "license": "GPL-2.0",
+  "files": [
+    "saofile.js",
+    "template"
+  ],
   "scripts": {
-    "vue": "vue"
+    "sao": "sao",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "sao": "^1.0.0"
   }
 }

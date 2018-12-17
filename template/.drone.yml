@@ -53,14 +53,8 @@ pipeline:
     when:
       status: [ success, failure ]
     template: >
-    {{{{raw}}}}
       {{#success build.status}}
-    {{{{/raw}}}}
-        published https://{{host}}/{{name}}/
-    {{{{raw}}}}
+        published https://<%= host %>/<%= name %>/
       {{else}}
-    {{{{/raw}}}}
-        failed publishing https://{{host}}/{{name}}/
-    {{{{raw}}}}
+        failed publishing https://<%= host %>/<%= name %>/
       {{/success}}
-    {{{{/raw}}}}

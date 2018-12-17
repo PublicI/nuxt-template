@@ -1,14 +1,11 @@
-# {{ name }}
+# <%= name %>
 
-> {{ description }}
+> <%= description %>
 
 ## Build setup
 
 ``` bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000/{{name}}
+# serve with hot reload at localhost:3000/<%= name %>
 $ npm run dev
 
 # build for production and launch server

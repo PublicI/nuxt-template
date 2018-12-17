@@ -5,7 +5,7 @@ module.exports = {
      ** Headers of the page
      */
     head: {
-        title: '{{ name }}',
+        title: '<%= name %>',
         meta: [
             { charset: 'utf-8' },
             {
@@ -15,7 +15,7 @@ module.exports = {
             {
                 hid: 'description',
                 name: 'description',
-                content: '{{ description }}'
+                content: '<%= description %>'
             }
         ],
         link: [
@@ -45,7 +45,6 @@ module.exports = {
     ],
     plugins: [
         { src: '~/plugins/pym.js', ssr: false },
-        // { src: '~/plugins/typekit.js', ssr: false },
         { src: '~/plugins/chartbeat.js', ssr: false }
     ],
     axios: {

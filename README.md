@@ -1,19 +1,11 @@
+# App generator
+
 This is a generator for single-page apps and embeddable graphics for use by the Center for Public Integrity's data team. It sets things up real good so you don't have to worry about it none.
 
 ## Getting started
 
-This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). If you don't have it, install it like:
-
 ```bash
-npm install -g vue-cli@2
-```
-
-Then, to generate the project:
-
-```bash
-vue init PublicI/app-generator <project-name>
-cd <project-name> # move to your project
-npm install
+npx sao PublicI/app-generator#sao my-project
 ```
 
 To use:

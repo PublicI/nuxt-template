@@ -1,6 +1,5 @@
-{{{{raw}}}}
 <template>
-    <section>
+    <section class="basic-text">
         <h1>
             Example
         </h1>
@@ -12,7 +11,6 @@
         </nuxt-link>
     </section>
 </template>
-{{{{/raw}}}}
 
 <script>
 import { examples } from '~/assets/examples.json';
