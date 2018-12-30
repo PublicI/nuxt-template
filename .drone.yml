@@ -24,13 +24,6 @@ pipeline:
     commands:
       - node index -y testing
 
-  install-deps:
-    image: node:8.12.0-alpine
-    commands:
-      - cd testing
-      - npm config set cache .npm-cache
-      - npm ci --production
-
   generate:
     image: node:8.12.0-alpine
     commands:
