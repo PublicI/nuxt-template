@@ -22,7 +22,7 @@ pipeline:
   scaffold:
     image: node:8.12.0-alpine
     commands:
-      - npm run sao -- -y . testing
+      - node index -y . testing
 
   install-deps:
     image: node:8.12.0-alpine

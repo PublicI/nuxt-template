@@ -1,5 +1,5 @@
 {
-  "name": "sao-app-generator",
+  "name": "@publici/app-generator",
   "version": "0.1.0",
   "description": "It sets things up real good so you don't have to worry about it none.",
   "author": "Center for Public Integrity <data@publicintegrity.org> (http://publicintegrity.org)",
@@ -8,12 +8,15 @@
     "saofile.js",
     "template"
   ],
+  "bin": "./index.js",
   "scripts": {
-    "sao": "sao",
     "test": "ava"
   },
+  "dependencies": {
+    "cac": "^6.3.12",
+    "sao": "^1.6.1"
+  },
   "devDependencies": {
-    "ava": "^0.25.0",
-    "sao": "^1.0.0"
+    "ava": "^0.25.0"
   }
 }
