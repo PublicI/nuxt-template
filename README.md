@@ -5,7 +5,7 @@ This is a generator for single-page apps and embeddable graphics for use by the 
 ## Getting started
 
 ```bash
-npx @publici/app-generator my-project
+npx sao publici/app-generator#sao my-project
 cd my-project
 ```
 
