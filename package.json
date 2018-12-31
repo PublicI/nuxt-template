@@ -4,10 +4,6 @@
   "description": "It sets things up real good so you don't have to worry about it none.",
   "author": "Center for Public Integrity <data@publicintegrity.org> (http://publicintegrity.org)",
   "license": "GPL-2.0",
-  "files": [
-    "saofile.js",
-    "template"
-  ],
   "bin": {
     "publici-app-generator": "index.js"
   },
