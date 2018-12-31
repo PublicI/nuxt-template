@@ -9,7 +9,7 @@
     "template"
   ],
   "bin": {
-    "publici-app-generator": "./index.js"
+    "publici-app-generator": "index.js"
   },
   "scripts": {
     "test": "ava"
