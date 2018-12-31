@@ -8,7 +8,9 @@
     "saofile.js",
     "template"
   ],
-  "bin": "./index.js",
+  "bin": {
+    "publici-app-generator": "./index.js"
+  },
   "scripts": {
     "test": "ava"
   },
