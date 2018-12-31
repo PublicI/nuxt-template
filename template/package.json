@@ -5,6 +5,7 @@
     "author": "<%= author %>",
     "private": true,
     "scripts": {
+        "aws-push": "aws s3 sync --acl public-read --cache-control max-age=120,public ./dist/ s3://<%= host %>/$npm_package_name/",
         "build": "nuxt build",
         "dev": "nuxt",
         "generate": "nuxt generate",
