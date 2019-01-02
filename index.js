@@ -11,7 +11,7 @@ cli.command('[outDir]', 'Generate a new project')
     .action((outDir, flags) => {
         const options = Object.assign(
             {
-                generator: '.',
+                generator: __dirname,
                 outDir: outDir || '.',
                 updateCheck: true
             },
