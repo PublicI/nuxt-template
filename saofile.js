@@ -29,7 +29,10 @@ module.exports = {
   actions: [
     {
       type: 'add',
-      files: '**'
+      files: '**',
+      filters: {
+          '.DS_Store': false
+      }
     }
   ],
   async completed() {
