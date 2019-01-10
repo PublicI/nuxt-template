@@ -31,7 +31,7 @@ module.exports = {
       type: 'add',
       files: '**',
       filters: {
-          '.DS_Store': false
+          '**/.DS_Store': false
       }
     }
   ],
