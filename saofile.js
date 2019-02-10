@@ -33,6 +33,12 @@ module.exports = {
       filters: {
           '**/.DS_Store': false
       }
+    },
+    {
+      type: 'move',
+      patterns: {
+        gitignore: '.gitignore'
+      }
     }
   ],
   async completed() {
