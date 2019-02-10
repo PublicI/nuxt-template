@@ -2,14 +2,7 @@
 
 (function () {
     var prefix = 'https://<%= host %>/<%= name %>/';
-/*
-    if (document.location.hostname !== 'localhost' &&
-        document.location.hostname !== '10.0.2.2' &&
-        document.location.hostname !== 'iw-files.s3.amazonaws.com' &&
-        document.location.hostname.indexOf('apps.fivetwentyseven.com') === -1) {
-        prefix = '//<%= host%>/<%= name %>/';
-    }
-*/
+
     try {
         if (!window.pym) {
             /*! pym.js - v1.3.2 - 2018-02-13 */
@@ -36,8 +29,6 @@
                 }
 
                 var parentPym = new window.pym.Parent('<%= name %>' + (i === 0 ? '' : i), prefix + view, {});
-
-                // var pymHash = new Hash(parentPym);
 
                 pymParents.push(parentPym);
             }
