@@ -1,15 +1,19 @@
 module.exports = {
     root: true,
-    parser: 'babel-eslint',
     env: {
         browser: true,
         node: true
     },
-    extends: 'standard',
-    // required to lint *.vue files
-    plugins: ['html'],
+    extends: [
+        'standard',
+        'plugin:vue/recommended'
+    ],
+    parserOptions: {
+        parser: 'babel-eslint'
+    },
     // add your custom rules here
     rules: {
+        'vue/html-indent': ['warn', 4],
         'brace-style': ['warn'],
         'comma-dangle': [2, 'only-multiline'],
         'comma-spacing': ['warn'],
