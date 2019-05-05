@@ -17,15 +17,15 @@
         "start": "nuxt start"
     },
     "dependencies": {
-        "@nuxtjs/axios": "^5.3.6",
-        "@nuxtjs/google-analytics": "^2.0.3",
+        "@nuxtjs/axios": "^5.4.1",
+        "@nuxtjs/google-analytics": "^2.2.0",
         "dsv-loader": "^2.0.0",
         "less": "^3.9.0",
-        "less-loader": "^4.1.0",
-        "nuxt": "^2.4.3",
+        "less-loader": "^5.0.0",
+        "nuxt": "^2.6.3",
         "pym.js": "^1.3.2",
         "s3-deploy": "^1.3.0",
-        "source-map-support": "^0.5.10"
+        "source-map-support": "^0.5.12"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.1",
