@@ -22,6 +22,12 @@ module.exports = {
             {
                 rel: 'icon',
                 type: 'image/png',
+                sizes: '32x32',
+                href: 'https://<%= host %>/brand/icons/favicon-32x32.png'
+            },
+            {
+                rel: 'icon',
+                type: 'image/png',
                 href: `/${pkg.name}/favicon.png`
             }
         ]
