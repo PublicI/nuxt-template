@@ -10,18 +10,18 @@ pipeline:
   #     - ./node_modules
 
   install:
-    image: node:10.13-alpine
+    image: node:10.15-alpine
     commands:
       - npm config set cache .npm-cache
       - npm ci --production
 
   generate:
-    image: node:10.13-alpine
+    image: node:10.15-alpine
     commands:
       - npm run generate
 
   push:
-    image: node:10.13-alpine
+    image: node:10.15-alpine
     secrets: [aws_access_key_id, aws_secret_access_key]
     commands:
       - npm run push
