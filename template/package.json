@@ -17,7 +17,7 @@
         "start": "nuxt start"
     },
     "dependencies": {
-        "@nuxtjs/axios": "^5.4.1",
+        "@nuxtjs/axios": "^5.5.3",
         "@nuxtjs/google-analytics": "^2.2.0",
         "dsv-loader": "^2.0.0",
         "less": "^3.9.0",
