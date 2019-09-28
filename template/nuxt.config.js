@@ -54,10 +54,7 @@ module.exports = {
         { src: '~/plugins/chartbeat.js', ssr: false }
     ],
     axios: {
-        baseURL: process.server
-            ? `http://${process.env.HOST || 'localhost'}:${process.env.PORT ||
-                  3000}`
-            : `/${pkg.name}/`
+        prefix: `/${pkg.name}/`
     },
     router: {
         base: `/${pkg.name}/`
