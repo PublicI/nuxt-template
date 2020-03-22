@@ -15,10 +15,10 @@
     "test": "ava"
   },
   "dependencies": {
-    "cac": "^6.5.2",
-    "sao": "^1.6.1"
+    "cac": "^6.5.8",
+    "sao": "^1.7.0"
   },
   "devDependencies": {
-    "ava": "^2.2.0"
+    "ava": "^3.5.1"
   }
 }
