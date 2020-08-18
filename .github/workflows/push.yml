@@ -1,25 +1,28 @@
 on: push
-name: Publish
+name: Test
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: install
-      uses: docker://node:14.5-alpine
+      uses: docker://node:14.8-alpine
       with:
         entrypoint: npm
-        args: ci --production
+        args: ci
+    - name: test
+      uses: docker://node:14.8-alpine
+      with:
+        entrypoint: npm
+        args: test
+    - name: scaffold
+      uses: docker://node:14.8-alpine
+      with:
+        entrypoint: node
+        args: index -y testing
     - name: generate
-      uses: docker://node:14.5-alpine
+      uses: docker://node:14.8-alpine
+      working-directory: ./testing
       with:
         entrypoint: npm
         args: run generate
-    - name: push
-      uses: docker://node:14.5-alpine
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        entrypoint: npm
-        args: run push
