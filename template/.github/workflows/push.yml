@@ -1,25 +1,20 @@
 on: push
 name: Publish
 jobs:
-  install:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Set Node.js 14.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 14.x
     - name: install
-      uses: docker://node:14.8-alpine
-      with:
-        entrypoint: npm
-        args: ci --production
+      run: npm ci --production
     - name: generate
-      uses: docker://node:14.8-alpine
-      with:
-        entrypoint: npm
-        args: run generate
+      runL: npm run generate
     - name: push
-      uses: docker://node:14.8-alpine
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        entrypoint: npm
-        args: run push
+      run: npm run push
