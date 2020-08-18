@@ -1,0 +1,28 @@
+on: push
+name: Publish
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: install
+      uses: docker://node:14.5-alpine
+      with:
+        entrypoint: npm
+        args: ci
+    - name: test
+      uses: docker://node:14.5-alpine
+      with:
+        entrypoint: npm
+        args: test
+    - name: scaffold
+      uses: docker://node:14.5-alpine
+      with:
+        entrypoint: node
+        args: index -y testing
+    - name: generate
+      uses: docker://node:14.5-alpine
+      working-directory: testing
+      with:
+        entrypoint: npm
+        args: run generate
