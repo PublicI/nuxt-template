@@ -1,5 +1,5 @@
 on: push
-name: Publish
+name: Test
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
         args: index -y testing
     - name: generate
       uses: docker://node:14.5-alpine
-      working-directory: testing
+      working-directory: ./testing
       with:
         entrypoint: npm
         args: run generate
