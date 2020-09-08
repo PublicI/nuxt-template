@@ -12,7 +12,7 @@ jobs:
     - name: install
       run: npm ci --production
     - name: generate
-      runL: npm run generate
+      run: npm run generate
     - name: push
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
