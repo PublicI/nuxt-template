@@ -26,6 +26,8 @@
 
                 if (typeof view === 'undefined' || !view) {
                     view = '';
+                } else {
+                    view = view && view.endsWith('/') ? view : `${view}/`
                 }
 
                 var parentPym = new window.pym.Parent('<%= name %>' + (i === 0 ? '' : i), prefix + view, {});
