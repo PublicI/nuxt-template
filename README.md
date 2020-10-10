@@ -2,20 +2,15 @@
 
 ## Setup
 
-To start a new project with this template:
+To start a new project with this template, open a terminal and run:
 
-1. Click [Use this template](https://github.com/PublicI/app-generator/generate).
-2. Specify the repository's name and click "Create repository from template."
-3. Wait for GitHub to generate a new repository.
-5. Open a terminal and navigate to where you want the project to live.
-6. Run `npx sao -c <name-of-project>` to setup the template.
-7. Answer a few questions and then commit the result.
-
-If you don't want to start with a GitHub repo, you could run `npx sao github:PublicI/app-generator <name-of-project>` in place of steps 1-6.
+```sh
+npm init @publici nuxt <name-of-project>
+```
 
 ## Development
 
-To run this project locally, open a terminal, navigate to the project's directory and execute:
+To start a development version of this project locally, open a terminal, navigate to the project's directory and run:
 
 ```sh
 npm run dev

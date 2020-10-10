@@ -2,7 +2,7 @@
 
 ## Development
 
-To run this project locally, open a terminal, navigate to the project's directory and execute:
+To start a development version of this project locally, open a terminal, navigate to the project's directory and run:
 
 ```sh
 npm run dev

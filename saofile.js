@@ -26,6 +26,7 @@ module.exports = {
             },
         ];
     },
+    templateDir: '.',
     actions: [
         {
             type: "add",
@@ -35,9 +36,19 @@ module.exports = {
             },
         },
         {
+            type: "remove",
+            files: 'saofile.js',
+        },
+        {
             type: "move",
             patterns: {
-                "README.md.template": "README.md",
+                "_package.json": "package.json",
+            },
+        },
+        {
+            type: "move",
+            patterns: {
+                "_README.md": "README.md",
             },
         },
     ],
