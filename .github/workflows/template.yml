@@ -6,9 +6,10 @@ on:
     branches:
       - master
 jobs:
-  npm-publish:
+  on-template:
     name: on template
     runs-on: ubuntu-latest
+    if: github.event.repository.name != 'app-generator'
     steps:
       - name: Set Node.js 14.x
         uses: actions/setup-node@master

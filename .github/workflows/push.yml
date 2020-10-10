@@ -3,6 +3,7 @@ name: Publish
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: github.event.repository.name != 'app-generator'
     steps:
     - uses: actions/checkout@master
     - name: Set Node.js 14.x
