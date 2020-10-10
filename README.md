@@ -8,6 +8,12 @@ To start a new project with this template, open a terminal and run:
 npm init @publici nuxt <name-of-project>
 ```
 
+Alternatively, you can click "[Use this template](https://github.com/PublicI/nuxt-template/generate)" on GitHub, clone the repo and then in the project directory run:
+
+```sh
+npm init @publici . .
+```
+
 ## Development
 
 To start a development version of this project locally, open a terminal, navigate to the project's directory and run:
