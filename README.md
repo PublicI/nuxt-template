@@ -1,4 +1,4 @@
-# App template
+# Nuxt template
 
 ## Setup
 
