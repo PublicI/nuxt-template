@@ -3,18 +3,21 @@ name: Publish
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.event.repository.name != 'app-generator'
     steps:
     - uses: actions/checkout@master
     - name: Set Node.js 14.x
       uses: actions/setup-node@master
       with:
         node-version: 14.x
+    - name: scaffold
+      if: github.event.repository.name == 'app-generator'
+      run: npx sao -y .
     - name: install
-      run: npm ci --production
+      run: npm ci
     - name: generate
       run: npm run generate
     - name: push
+      if: github.event.repository.name != 'app-generator'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
