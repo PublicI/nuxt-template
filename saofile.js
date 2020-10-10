@@ -26,12 +26,23 @@ module.exports = {
             },
         ];
     },
+    templateDir: ".",
     actions: [
         {
             type: "add",
             files: "**",
             filters: {
                 "**/.DS_Store": false,
+                "saofile.js": false,
+                "node_modules/**": false,
+                ".git/**": false,
+            },
+        },
+        {
+            type: "move",
+            patterns: {
+                "_package.json": "package.json",
+                "_README.md": "README.md",
             },
         },
     ],
@@ -42,6 +53,9 @@ module.exports = {
         });
         this.showProjectTips();
 
-        console.log(`To start a development server which serves the project at http://localhost:3000/${this.outDir}, navigate to that directory and run "npm run dev".`);
+        console.log(`
+To start a development server at http://localhost:3000/${this.answers.name}, run:
+$ cd ${this.outDir} && npm run dev
+        `);
     },
 };
