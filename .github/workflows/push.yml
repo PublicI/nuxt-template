@@ -1,7 +1,7 @@
 on: push
-name: Test
+name: Publish
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -10,11 +10,11 @@ jobs:
       with:
         node-version: 14.x
     - name: install
-      run: npm ci
-    - name: test
-      run: npm test
-    - name: scaffold
-      run: node index -y testing
+      run: npm ci --production
     - name: generate
-      working-directory: ./testing
       run: npm run generate
+    - name: push
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: npm run push

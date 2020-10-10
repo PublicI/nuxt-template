@@ -15,7 +15,7 @@ module.exports = {
       {
         name: 'author',
         message: 'Author',
-        default: this.gitUser.name,
+        default: 'Center for Public Integrity',
         store: true
       },
       {
@@ -33,19 +33,9 @@ module.exports = {
       filters: {
           '**/.DS_Store': false
       }
-    },
-    {
-      type: 'move',
-      patterns: {
-        gitignore: '.gitignore'
-      }
     }
   ],
   async completed() {
     this.gitInit();
-    await this.npmInstall({
-      npmClient: 'npm'
-    });
-    this.showProjectTips();
   }
 };

@@ -1,0 +1,25 @@
+# adapted from https://gist.github.com/moltar/afe0e541ac87ed07f1454520683140de#file-on-template-yml-L25
+
+name: On Template
+on:
+  push:
+    branches:
+      - master
+jobs:
+  npm-publish:
+    name: on template
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Node.js 14.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 14.x
+      - name: generate
+        run: npx sao -y ${{ github.event.repository.name }}
+      - name: clean up
+        run: rm .github/workflows/template.yml saofile.js
+      - name: push
+        uses: github-actions-x/commit@v2.7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Replace template values"
