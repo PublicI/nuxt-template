@@ -26,29 +26,12 @@ module.exports = {
             },
         ];
     },
-    templateDir: '.',
     actions: [
         {
             type: "add",
             files: "**",
             filters: {
                 "**/.DS_Store": false,
-            },
-        },
-        {
-            type: "remove",
-            files: 'saofile.js',
-        },
-        {
-            type: "move",
-            patterns: {
-                "_package.json": "package.json",
-            },
-        },
-        {
-            type: "move",
-            patterns: {
-                "_README.md": "README.md",
             },
         },
     ],
