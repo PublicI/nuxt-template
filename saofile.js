@@ -48,7 +48,6 @@ module.exports = {
         });
         this.showProjectTips();
 
-        this
-            .logger(`To start a development server which serves the project at http://localhost:3000/${this.outDir}, cd to that directory and type npm run dev.`);
+        console.log(`To start a development server which serves the project at http://localhost:3000/${this.outDir}, navigate to that directory and run "npm run dev".`);
     },
 };
